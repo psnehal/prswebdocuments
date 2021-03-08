@@ -29,7 +29,6 @@
                 <H2><A name="phenome"><u>Phenome</u></A></H2>
 
                 <p class="text-justify">
-
                     The MGI phenome was used as the discovery dataset and was based on ICD9-CM and ICD10-CM code data for 38,360 unrelated, genotyped individuals of recent European ancestry.
                     Longitudinal time-stamped diagnoses were recoded to indicators for whether a patient ever had given a diagnosis code recorded by Michigan Medicine.
                     These ICD9-CM and ICD10-CM codes were aggregated to form up to 1,857 PheWAS traits using the PheWAS R package
@@ -55,17 +54,13 @@
                 </p>
 
                 <H2><A name="ukgene"><u>Genetic data</u></A></H2>
-
-
                 <p class="text-justify">We used the UK BioBank Imputed Dataset (v3) and limited analyses to the documented 408,961 White British 11 individuals and 47,836,001
                 variants with imputation information score <span>&#x2267;</span> 0.3 and MAF <span>&#x2267;</span> 0.01%  of which 22,846,729 overlapped with the imputed MGI data (see above).
                 Two random subsets of 5,000 and 10,000 unrelated, White British individuals were used for LD analyses of UKB-based summary statistics.
                 </p>
 
                 <H2><A name="ukphen"><u>Phenome</u></A></H2>
-
                 <p class="text-justify">
-
                     The UK Biobank phenome was used as a replication dataset and was based on ICD9 and ICD10 code data of 408,961 White British <sup>11</sup>,
                 genotyped individuals that were similarly aggregated to PheWAS traits as MGI (as described elsewhere <sup>12</sup>).
                 In contrast to MGI, there were many pairwise relationships reported for UKB participants.
@@ -140,7 +135,6 @@
                 </p>
 
                 <p class="text-justify">
-
                     The first set of UK Biobank GWAS summary statistics were based on the analysis of up to 408,961 White British European-ancestry samples (UKB GWAS Lee Lab, see Web Resources).
                     SNP-disease odds ratios were estimated using logistic mixed modeling adjusting for sample relatedness, and p-values were estimated using saddlepoint approximations (SAIGE method)<sup>24</sup>
                     to calibrate the distribution of score test statistics and, thus, control for unbalanced case-control ratios. The underlying phenotypes were auto-curated phenotypes based on the PheCodes of the PheWAS R package <sup>1; 8; 12</sup>
@@ -166,24 +160,20 @@
                 </p>
 
                 <p class="text-justify">
-
                     For the first two construction strategies, we performed LD clumping/pruning of variants with p-values below 10<sup>-4</sup> by using the imputed allele dosages of 10,000 randomly selected
                 samples and a pairwise correlation cut-off at r<sup>2</sup> <span>&#x3c;</span> 0.1 within 1Mb window. Using the resulting loci, we defined up to five sub-sets of variants with p-values
                 below different thresholds (<5x10<sup>-9</sup> to <5x10<sup>-5</sup>). These were used to construct a PRS tied to each threshold, where the PRS associated with p-values less than 5x10<sup>-8</sup>
                     is sometimes denoted as “GWAS hits.” For the second PRS construction method, we construct many different PRS across a fine grid of p-value thresholds.
                     The p-value threshold with the highest pseudo-R2 (see PRS Evaluation below) was used to define the more optimized “Pruning and Thresholding (P & T)” PRS.
-
                 </p>
 
                 <p class="text-justify">
-
                     As an alternative to the p-value thresholding and “P&T” PRS construction strategies, we also used the software package “lassosum” <sup>25</sup>
                     to define a third type of PRS for GWAS sources with full summary statistics. Lassosum obtains PRS weights by applying elastic net penalization to GWAS summary
                     statistics and incorporating LD information from a reference panel. Here, we used 5,000 randomly selected, unrelated samples as the LD reference panel.
                     We applied a MAF filter of 1 % and, in contrast to the other two approaches, only included autosomal variants that overlap between summary statistics,
                     LD reference panel, and target panel. Each “lassosum” run resulted in up to 76 combinations of the elastic net tuning parameters s and λ, and consequently, in
                     76 SNP sets with corresponding weights used to construct 76 PRS. We then selected the PRS with the highest pseudo-R2 to define the “lassosum” PRS (see PRS Evaluation below).
-
                 </p>
 
                 <p class="text-justify">
@@ -196,9 +186,6 @@
                     them to have a standard deviation of 1.
 
                 </p>
-
-
-
                 <br/><br/>
                 <h4><A name="prseval">PRS Evaluation</A></h4>
 
@@ -220,14 +207,12 @@
                 </p>
 
                 <p class="text-justify">
-
                     For cross-validation purposes, we split the corresponding data for each trait in
                     a phenome into training and test set. To retain case control matching (see “Phenome generation” above),
                     we randomly and equally distributed unique strata from matching and thus obtained a 50/50% split of
                     cases where their matched controls were assigned to the same subset. We used the training set to determine the
                     PRS tuning parameter(s) with the highest pseudo-R<sup>2</sup> and used the testing set to obtain performance metrics for that PRS.
                 Firth's bias reduction method was used to resolve the problem of separation in logistic regression (R package “brglm2”)<sup>33; 34</sup>.
-
                 </p>
                 <br/><br/>
 
@@ -248,23 +233,16 @@
                     Our primary interest is β<sub>PRS</sub>, while the other factors (Age, Sex and PC) were included to address potential residual confounding and
                 do not provide interpretable estimates due to the preceding application of case-control matching.
                 Firth's bias reduction method was used to resolve the problem of separation in logistic regression (Logistf in R package “EHR”) <sup>35-37</sup>
-
                 </p>
 
                 <p class="text-justify">
                     To study the ability of the PRS to identify high risk patients, we fit the above model but replacing the PRS with an indicator for whether the PRS value
                     was in the top 1, 2, 5, 10, or 25% among the matched case control cohort.
-
                 </p>
                 <br/><br/>
 
-
-
-
                 <h4><A name="ref">Phenome-wide Exploration of PRS Associations</A></h4>
-
                 <p class="text-justify">
-
                     We selected PRS that were strongly associated with the cancer trait they weredesigned for phenome-wide association exploration in the phenomes of MGI andUKB for
                     (p-value <span>&#x2264;</span> (0.05 / [#phenotypes in corresponding phenome]); see below).
                 </p>
@@ -280,7 +258,6 @@
                 <p class="text-justify">
                     To investigate the possibility of the secondary trait associations with PRS being completely driven by the primary trait association, we performed a second set of PheWAS after excluding individuals affected with the primary or related cancer traits for which the PRS was constructed, referred to as “Exclusion-PRS-PheWAS” as described previously<sup>1</sup>.
                 </p>
-
                 <br/><br/>
 
                 <h4><A name="catalog">Online Visual Catalog: PRSweb</A></h4>
@@ -288,22 +265,13 @@
                 <p class="text-justify">
                     The online open access visual catalog PRSweb was implemented using Grails, a Groovy- and Java-based backend logic, to integrate interactive visualizations and MySQL databases. Interactive PheWAS plots are drawn with the JavaScript library “LocusZoom.js” which is maintained by the
                     UM Center for Statistical Genetics (Locuszoom, see Web Resources) and offers dynamic plotting, automatic plot sizing, and label positioning. Additional data-driven visualizations (e.g. temporal relationship plots) were implemented with the JavaScript library “D3.js”.
-
                 </p>
 
-                <p class="text-justify">
-                    Unless otherwise stated, analyses were performed using R 3.6.1 <sup>39</sup>
-
-                </p>
-
+                <p class="text-justify"> Unless otherwise stated, analyses were performed using R 3.6.1 <sup>39</sup></p>
                 <br/><br/>
-
-                <h4><A name="ref">
-                    Method References
-                </A></h4>
+                <h4><A name="ref">Method References</A></h4>
 
                 <p class="text-justify">
-
                 <ol>
                 <li>Fritsche, L.G., Gruber, S.B., Wu, Z., Schmidt, E.M., Zawistowski, M., Moser, S.E., Blanc, V.M., Brummett, C.M., Kheterpal, S., Abecasis, G.R., et al. (2018). Association of Polygenic Risk Scores for Multiple Cancers in a Phenome-wide Study: Results from The Michigan Genomics Initiative. Am J Hum Genet 102, 1048-1061</li>
                 <li> World Medical Association. (2013). World Medical Association Declaration of Helsinki: ethical principles for medical research involving human subjects. JAMA 310, 2191-2194.</li>
@@ -344,9 +312,6 @@
                 <li> Choi, L., and Beck, C. (2017). EHR: Electronic Health Record (EHR) Data Processing and Analysis Tool. https://CRAN.R-project.org/package=EHR.</li>
                 <li> Fritsche, L.G., Gruber, S.B., Wu, Z., Schmidt, E.M., Zawistowski, M., Moser, S.E., Blanc, V.M., Brummett, C.M., Kheterpal, S., Abecasis, G.R., et al. (2018). Association of Polygenic Risk Scores for Multiple Cancers in a Phenome-wide Study: Results from The Michigan Genomics Initiative. Am J Hum Genet 102, 1048-1061.</li>
                 <li> R Core Team. (2016). R: A Language and Environment for Statistical Computing. (R Foundation for Statistical Computing, Vienna, Austria), https://www.R-project.org/.</li>
-
-
-
             </ol>
 
             
