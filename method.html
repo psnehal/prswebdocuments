@@ -116,8 +116,7 @@
 
                 <p class="text-justify">
                     The first set of UK Biobank GWAS summary statistics were based on the analysis of up to 408,961 White British European-ancestry samples (UKB GWAS Lee Lab, https://www.leelabsg.org/resources). SNP-disease odds ratios were estimated using logistic mixed modeling adjusting for sample relatedness, and p-values were estimated using saddlepoint approximations (SAIGE method)25 to calibrate the distribution of score test statistics and, thus, control for unbalanced case-control ratios. The underlying phenotypes were auto-curated phenotypes based on the PheCodes of the PheWAS R package 1; 11; 13 similar to the phenomes used in our study and in the following are referred to as “UKB PHECODE”.  </p>
-</p>
-                <br/><br/>
+</p>          
                 <p class="text-justify">
                 The second set of UK Biobank GWAS summary statistics were based on a linear regression model of up to 361,194 unrelated White British samples adjusting for relevant covariates (UKB GWAS Neale Lab, http://www.nealelab.is/uk-biobank). Three phenotype models were used in their analyses: (1) “PHESANT”: auto-curated phenotypes using PHEnome Scan ANalysis Tool, (2) “ICD10”: individuals with the same ICD10 category code (first three characters, e.g. “C50”) were used as cases while all non-coded individuals were treated as controls, and (3) “FINNGEN”: curated phenotypes / endpoints based on definitions of the Finngen consortium. In addition to the “UKB PHECODE” (described above), these three latter sources are referred to as “UKB PHESANT”, “UKB ICD10” and “UKB FINNGEN”, respectively (FINNGEN Clinical Endpoints, https://www.finngen.fi/en/researchers/clinical-endpoints; PHESANT, https://github.com/MRCIEU/PHESANT).
 </p>
@@ -152,7 +151,7 @@ For each cancer and set of GWAS summary statistics, this approach resulted in up
    <br/><br/>
                 <h4><A name="prseval">PRS Evaluation</A></h4>
 
-                <p class="text-justify">For the PRS evaluations, we fit the following model for each PRS and cancer phenotype without adjusting for covariates::
+                <p class="text-justify">For the PRS evaluations, except for when computing the pseudo-R2 (which is a measure of marginal association of the PRS with the outcome), we fit the following model for each PRS and cancer phenotype adjusting for covariates:
                 </p>
 
                 <p class="text-justify">
@@ -160,30 +159,28 @@ For each cancer and set of GWAS summary statistics, this approach resulted in up
                 </p>
 
                 <p class="text-justify">
-                    We used Nagelkerke’s pseudo-R2 (26)
-                    to select the tuning parameters within the “P&T” and lassosum construction methods (P-value for “P&T” SNP sets; s and λ for lassosum) and kept the
-                    PRS with the highest pseudo-R2 for further analyses. For each PRS derived for each GWAS source/method combination, we assessed the following
-                    performance measures relative to observed disease status in MGI and UKB:
-                    (1) overall performance with Nagelkerke’s pseudo-R<sup>2</sup>using R packages “rcompanion” (26), (2) accuracy with Brier score using R package “DescTools” (27);
-                (3) ability to discriminate between cases and controls as measured by the area under the receiver operating characteristic (ROC) curve (denoted AUC) using R package “pROC”
-                (28) and (4) calibration using Hosmer-Lemeshow Goodness of Fit test in the R package “ResourceSelection” (29-31).
+                    We used Nagelkerke’s pseudo-R2 <sup>28 </sup> to select the tuning parameters within the “P&T” and lassosum construction methods 
+                  (P-value for “P&T” SNP sets; s and λ for lassosum) and kept the PRS with the highest pseudo-R2 for further analyses. 
+                  For each PRS derived for each GWAS source/method combination, we assessed the following performance measures relative to 
+                  observed disease status in MGI and UKB:
+                  (1) overall performance with Nagelkerke’s pseudo-R2 using R packages “rcompanion” <sup>28</sup>,
+                  (2) accuracy with Brier score using R package “DescTools” 29; and (3) ability to discriminate between cases and controls as measured by the
+                  area under the covariate-adjusted receiver operating characteristic (AROC; semiparametric frequentist inference 30) curve (denoted AAUC)
+                  using R package “ROCnReg” <sup>31</sup>.
                 </p>
 
                 <p class="text-justify">
-                    For cross-validation purposes, we split the corresponding data for each trait in
-                    a phenome into training and test set. To retain case control matching (see “Phenome generation” above),
-                    we randomly and equally distributed unique strata from matching and thus obtained a 50/50% split of
-                    cases where their matched controls were assigned to the same subset. We used the training set to determine the
-                    PRS tuning parameter(s) with the highest pseudo-R<sup>2</sup> and used the testing set to obtain performance metrics for that PRS.
-                Firth's bias reduction method was used to resolve the problem of separation in logistic regression (R package “brglm2”)<sup>33; 34</sup>.
+                    For cross-validation purposes, we split the data corresponding to each trait in a phenome into training and test set. To retain case-control matching (see “Phenome generation” above),
+                  we randomly and equally distributed unique strata from matching and thus obtained a 50/50% split of cases where their matched controls were assigned to the same subset. 
+                  We used the training set to determine the PRS tuning parameter(s) with the highest pseudo-R2 and used the testing set to obtain performance metric for that PRS. 
+                  Firth's bias reduction method was used to resolve the problem of separation in logistic regression (R package “brglm2”)<sup>32; 33 </sup>.
                 </p>
                 <br/><br/>
 
                 <h4><A name="testing">PRS Association Testing</A></h4>
 
                 <p class="text-justify">
-                    Next, we assessed the strength of the relationship between these PRS and the traits they were designed for. To do this we fit the following model for each PRS and cancer phenotype
-                    adjusting for various covariates:
+                   Next, we assessed the strength of the relationship between these PRS and the traits they were designed for. To do this we fit the following model for each PRS and cancer phenotype adjusting for various covariates:
                 </p>
 
                 <p class="text-justify">
@@ -191,63 +188,62 @@ For each cancer and set of GWAS summary statistics, this approach resulted in up
                 </p>
 
                 <p class="text-justify">
-                    where the PCs were the first four principal components obtained from the principal component analysis of the genotyped GWAS markers,
-                    where “Age” was the age at last observed diagnosis in MGI and birthyear in UKB and where “Array” represents the genotyping array.
-                    Our primary interest is β<sub>PRS</sub>, while the other factors (Age, Sex and PC) were included to address potential residual confounding and
-                do not provide interpretable estimates due to the preceding application of case-control matching.
-                Firth's bias reduction method was used to resolve the problem of separation in logistic regression (Logistf in R package “EHR”) <sup>35-37</sup>
+                    where the PCs were the first four principal components obtained from the principal component analysis of the genotyped GWAS markers, 
+                  where “Age” was the age at last observed diagnosis in MGI and birthyear in UKB and where “Array” represents the genotyping array.
+                  Our primary interest is β_PRS, while the other factors (Age, Sex and PC) were included to address potential residual confounding 
+                  and do not provide interpretable estimates due to the preceding application of case-control matching. Firth's bias reduction method
+                  was used to resolve the problem of separation in logistic regression (Logistf in R package “EHR”) . <sup>34-36</sup>
                 </p>
 
                 <p class="text-justify">
-                    To study the ability of the PRS to identify high risk patients, we fit the above model but replacing the PRS with an indicator for whether the PRS value
-                    was in the top 1, 2, 5, 10, or 25% among the matched case control cohort.
+                   To study the ability of the PRS to identify high risk patients, we fit the above model but replacing the PRS with an indicator for whether the PRS value was in the top 1, 2, 5, 10, or 25% (defined in controls) among the matched case control cohort. 
                 </p>
                 <br/><br/>
 
                 <h4><A name="ref">Phenome-wide Exploration of PRS Associations</A></h4>
                 <p class="text-justify">
-                    We selected PRS that were strongly associated with the cancer trait they weredesigned for phenome-wide association exploration in the phenomes of MGI andUKB for
+                    We selected PRS that were strongly associated with the cancer trait they weredesigned for phenome-wide association exploration in the phenomes of MGI and UKB for
                     (p-value <span>&#x2264;</span> (0.05 / [#phenotypes in corresponding phenome]); see below).
                 </p>
 
                 <p class="text-justify">
                     We conducted PheWAS in MGI and also UKB (if the GWAS source was not based on UKB) to identify additional,
-                    secondary phenotypes associated with the PRS <sup>38</sup>. To evaluate PRS-phenotype associations, we conducted
+                    secondary phenotypes associated with the PRS <sup>37</sup>. To evaluate PRS-phenotype associations, we conducted
                 Firth bias-corrected logistic regression by fitting model of equation 1 above for each PRS and each phenotype of the corresponding phenome.
-                To adjust for multiple testing, we applied the conservative phenome-wide Bonferroni correction according to the total number of analyzed PheWAS codes
-                (MGI: 1,689 phenotypes; UKB: 1,419 phenotypes;). In Manhattan plots, we present –log10(p-value) corresponding to tests of H<sub>0</sub>: β<sub>PRS</sub>=0.  Directional triangles on the PheWAS plot indicate whether a phenome-wide significant trait was positively (pointing up) or negatively (pointing down) associated with the PRS
+                To adjust for multiple testing, we applied the conservative phenome-wide Bonferroni correction according to the total number of analyzed PheCodes (MGI: 1,689 phenotypes; UKB: 1,419 phenotypes). 
+                In Manhattan plots, we present –log10(p-value) corresponding to tests of H<sub>0</sub>: β<sub>PRS</sub>=0.  Directional triangles on the PheWAS plot indicate whether a phenome-wide significant trait was positively (pointing up) or negatively (pointing down) associated with the PRS
                 </p>
 
                 <p class="text-justify">
-                    To investigate the possibility of the secondary trait associations with PRS being completely driven by the primary trait association, we performed a second set of PheWAS after excluding individuals affected with the primary or related cancer traits for which the PRS was constructed, referred to as “Exclusion-PRS-PheWAS” as described previously<sup>1</sup>.
-                </p>
+                    To investigate the possibility of the secondary trait associations with PRS being completely driven by the primary trait association, we performed a second set of PheWAS after excluding individuals affected with the primary or related cancer traits for which the PRS was constructed, referred to as “Exclusion-PRS-PheWAS” as described previously <sup>1</sup>.  </p>
                 <br/><br/>
 
                 <h4><A name="catalog">Online Visual Catalog: PRSweb</A></h4>
 
                 <p class="text-justify">
-                    The online open access visual catalog PRSweb was implemented using Grails, a Groovy- and Java-based backend logic, to integrate interactive visualizations and MySQL databases. Interactive PheWAS plots are drawn with the JavaScript library “LocusZoom.js” which is maintained by the
+                    The online open access visual catalog PRSweb was implemented using Grails, a Groovy- and Java-based backend logic, to integrate interactive visualizations and MySQL databases. 
+                  Interactive PheWAS plots are drawn with the JavaScript library “LocusZoom.js” which is maintained by the
                     UM Center for Statistical Genetics (Locuszoom, see Web Resources) and offers dynamic plotting, automatic plot sizing, and label positioning. Additional data-driven visualizations (e.g. temporal relationship plots) were implemented with the JavaScript library “D3.js”.
+               
                 </p>
 
-                <p class="text-justify"> Unless otherwise stated, analyses were performed using R 3.6.1 <sup>39</sup></p>
+                <p class="text-justify"> Unless otherwise stated, analyses were performed using R 3.6.1 <sup>38</sup></p>
                 <br/><br/>
                 <h4><A name="ref">Method References</A></h4>
 
                 <p class="text-justify">
                 <ol>
                 <li>Fritsche, L.G., Gruber, S.B., Wu, Z., Schmidt, E.M., Zawistowski, M., Moser, S.E., Blanc, V.M., Brummett, C.M., Kheterpal, S., Abecasis, G.R., et al. (2018). Association of Polygenic Risk Scores for Multiple Cancers in a Phenome-wide Study: Results from The Michigan Genomics Initiative. Am J Hum Genet 102, 1048-1061</li>
-                <li> World Medical Association. (2013). World Medical Association Declaration of Helsinki: ethical principles for medical research involving human subjects. JAMA 310, 2191-2194.</li>
-                <li> Wang, C., Zhan, X., Bragg-Gresham, J., Kang, H.M., Stambolian, D., Chew, E.Y., Branham, K.E., Heckenlively, J., Study, F., Fulton, R., et al. (2014). Ancestry estimation and control of population stratification for sequence-based association studies. Nat Genet 46, 409-415.</li>
+                <li>World Medical Association. (2013). World Medical Association Declaration of Helsinki: ethical principles for medical research involving human subjects. JAMA 310, 2191-2194.</li>
+                <liBeesley, L.J., Salvatore, M., Fritsche, L.G., Pandit, A., Rao, A., Brummett, C., Willer, C.J., Lisabeth, L.D., and Mukherjee, B. (2020). The emerging landscape of health research based on biobanks linked to electronic health records: Existing resources, statistical challenges, and potential opportunities. Stat Med 39, 773-800.</li>
+                <li>Sudlow, C., Gallacher, J., Allen, N., Beral, V., Burton, P., Danesh, J., Downey, P., Elliott, P., Green, J., Landray, M., et al. (2015). UK biobank: an open access resource for identifying the causes of a wide range of complex diseases of middle and old age. PLoS Med 12, e1001779.</li>
+                <li> Wang, C., Zhan, X., Bragg-Gresham, J., Kang, H.M., Stambolian, D., Chew, E.Y., Branham, K.E., Heckenlively, J., Study, F., Fulton, R., et al. (2014). Ancestry estimation and control of population stratification for sequence-based association studies. Nat Genet 46, 409-415.</li>  
                 <li> Li, J.Z., Absher, D.M., Tang, H., Southwick, A.M., Casto, A.M., Ramachandran, S., Cann, H.M., Barsh, G.S., Feldman, M., Cavalli-Sforza, L.L., et al. (2008). Worldwide human relationships inferred from genome-wide patterns of variation. Science 319, 1100-1104.</li>
                 <li>Manichaikul, A., Mychaleckyj, J.C., Rich, S.S., Daly, K., Sale, M., and Chen, W.M. (2010). Robust relationship inference in genome-wide association studies. Bioinformatics 26, 2867-2873.</li>
                 <li> Abraham, K.J., and Diaz, C. (2014). Identifying large sets of unrelated individuals and unrelated markers. Source Code Biol Med 9, 6.</li>
                 <li> McCarthy, S., Das, S., Kretzschmar, W., Delaneau, O., Wood, A.R., Teumer, A., Kang, H.M., Fuchsberger, C., Danecek, P., Sharp, K., et al. (2016). A reference panel of 64,976 haplotypes for genotype imputation. Nat Genet 48, 1279-1283.</li>
                 <li>Carroll, R.J., Bastarache, L., and Denny, J.C. (2014). R PheWAS: data analysis and plotting tools for phenome-wide association studies in the R environment. Bioinformatics 30, 2375-2376.</li>
                 <li>Ho, D.E., Imai, K., King, G., and Stuart, E.A. (2011). MatchIt: Nonparametric Preprocessing for Parametric Causal Inference. J Stat Softw 42, 1-28.</li>
-                <li>Sudlow, C., Gallacher, J., Allen, N., Beral, V., Burton, P., Danesh, J., Downey, P., Elliott, P., Green, J., Landray, M., et al. (2015). UK biobank: an open access resource for identifying the causes of a wide range of complex diseases of middle and old age. PLoS Med 12, e1001779.</li>
-                <li> Bycroft, C., Freeman, C., Petkova, D., Band, G., Elliott, L.T., Sharp, K., Motyer, A., Vukcevic, D., Delaneau, O., O'Connell, J., et al. (2017). Genome-wide genetic data on ~500,000 UK Biobank participants. bioRxiv.</li>
-                <li> Zhou, W., Nielsen, J.B., Fritsche, L.G., Dey, R., Gabrielsen, M.E., Wolford, B.N., LeFaive, J., VandeHaar, P., Gagliano, S.A., Gifford, A., et al. (2018). Efficiently controlling for case-control imbalance and sample relatedness in large-scale genetic association studies. Nat Genet 50, 1335-1341.</li>
                 <li> Michailidou, K., Lindstrom, S., Dennis, J., Beesley, J., Hui, S., Kar, S., Lemacon, A., Soucy, P., Glubb, D., Rostamianfar, A., et al. (2017). Association analysis identifies 65 new breast cancer risk loci. Nature 551, 92-94.</li>
                 <li>MacArthur, J., Bowler, E., Cerezo, M., Gil, L., Hall, P., Hastings, E., Junkins, H., McMahon, A., Milano, A., Morales, J., et al. (2017). The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog). Nucleic Acids Res 45, D896-D901.</li>
                 <li>Welter, D., MacArthur, J., Morales, J., Burdett, T., Hall, P., Junkins, H., Klemm, A., Flicek, P., Manolio, T., Hindorff, L., et al. (2014). The NHGRI GWAS Catalog, a curated resource of SNP-trait associations. Nucleic Acids Res 42, D1001-1006.</li>
@@ -261,16 +257,14 @@ For each cancer and set of GWAS summary statistics, this approach resulted in up
                 <li> Chahal, H.S., Lin, Y., Ransohoff, K.J., Hinds, D.A., Wu, W., Dai, H.J., Qureshi, A.A., Li, W.Q., Kraft, P., Tang, J.Y., et al. (2016). Genome-wide association study identifies novel susceptibility loci for cutaneous squamous cell carcinoma. Nat Commun 7, 12048.</li>
                 <li> Zhou, W., Nielsen, J.B., Fritsche, L.G., Dey, R., Gabrielsen, M.E., Wolford, B.N., LeFaive, J., VandeHaar, P., Gagliano, S.A., Gifford, A., et al. (2018). Efficiently controlling for case-control imbalance and sample relatedness in large-scale genetic association studies. Nat Genet 50, 1335-1341.</li>
                 <li> Mak, T.S.H., Porsch, R.M., Choi, S.W., Zhou, X., and Sham, P.C. (2017). Polygenic scores via penalized regression on summary statistics. Genet Epidemiol 41, 469-480.</li>
+                <li> Ge, T., Chen, C.Y., Ni, Y., Feng, Y.A., and Smoller, J.W. (2019). Polygenic prediction via Bayesian regression and continuous shrinkage priors. Nat Commun 10, 1776.</li>
                 <li> Mangiafico, S. (2019). rcompanion: Functions to Support Extension Education Program Evaluation. https://CRAN.R-project.org/package=rcompanion.</li>
                 <li> Signorell, A. (2018). DescTools: Tools for Descriptive Statistics. https://cran.r-project.org/package=DescTools.</li>
                 <li>Janes, H., and Pepe, M.S. (2009). Adjusting for covariate effects on classification accuracy using the covariate-adjusted receiver operating characteristic curve. Biometrika 96, 371-382.</li>
                 <li> Rodriguez-Alvarez, M.X., and Inacio, V. (2020). ROCnReg: ROC Curve Inference with and without Covariates. https://CRAN.R-project.org/package=ROCnReg.</li>
-                <li>Hosmer, D.W., and Lemeshow, S. (2010). Applied Logistic Regression.(New York, USA: John Wiley and Sons).</li>
-                <li> Lele, S., R., Keim, J.L., and Solymos, P. (2017). ResourceSelection: Resource Selection (Probability) Functions for Use-Availability Data. https://CRAN.R-project.org/package=ResourceSelection.</li>
-                <li> Steyerberg, E.W., Vickers, A.J., Cook, N.R., Gerds, T., Gonen, M., Obuchowski, N., Pencina, M.J., and Kattan, M.W. (2010). Assessing the performance of prediction models: a framework for traditional and novel measures. Epidemiology 21, 128-138.</li>
                 <li> Kosmidis, I., Clovis Kenne Pagui, E., and Sartori, N. (2018). Mean and median bias reduction in generalized linear models. https://ui.adsabs.harvard.edu/abs/2018arXiv180404085K.</li>
                 <li> Kosmidis, I. (2019). brglm2: Bias Reduction in Generalized Linear Models. https://CRAN.R-project.org/package=brglm2.</li>
-                <li>Heinze, G. (2006). A comparative investigation of methods for logistic regression with separated or nearly separated data. Stat Med 25, 4216-4226.</li>
+                <li> Heinze, G. (2006). A comparative investigation of methods for logistic regression with separated or nearly separated data. Stat Med 25, 4216-4226.</li>
                 <li> Heinze, G., Ploner, M., Dunkler, D., and Southworth, H. (2013). logistf: Firth's bias reduced logistic regression. https://CRAN.R-project.org/package=logistf.</li>
                 <li> Choi, L., and Beck, C. (2017). EHR: Electronic Health Record (EHR) Data Processing and Analysis Tool. https://CRAN.R-project.org/package=EHR.</li>
                 <li> Fritsche, L.G., Gruber, S.B., Wu, Z., Schmidt, E.M., Zawistowski, M., Moser, S.E., Blanc, V.M., Brummett, C.M., Kheterpal, S., Abecasis, G.R., et al. (2018). Association of Polygenic Risk Scores for Multiple Cancers in a Phenome-wide Study: Results from The Michigan Genomics Initiative. Am J Hum Genet 102, 1048-1061.</li>
