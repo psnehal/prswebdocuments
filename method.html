@@ -123,8 +123,10 @@
                 <h4><A name="prs">PRS Construction</A></h4>
 
                 <p class="text-justify">
-                    For each set of GWAS summary statistics from the above-mentioned sources and each cancer, we develop up to seven different PRS using three different construction methods.
-                    Our goal of this approach was to compare multiple PRS methods and find the method that works best for the various types of GWAS summary statistics.
+                    For each set of GWAS summary statistics from the above-mentioned sources and each cancer, we develop up to seven different PRS using three 
+                  different construction methods.
+                    Our goal of this approach was to compare multiple PRS methods and find the method that works best for the various types 
+                  of GWAS summary statistics.
                 </p>
 
                 <p class="text-justify">
@@ -137,16 +139,16 @@
 
                 <p class="text-justify">
                    As an alternative to the p-value thresholding and “P&T” PRS construction strategies, we also used the software package “lassosum” 26 and “PRS-CS” 27 to define a third type of PRS for GWAS sources with full summary statistics.
-Lassosum obtains PRS weights by applying elastic net penalization to GWAS summary statistics and incorporating LD information from a reference panel (https://github.com/tshmak/lassosum). Here, we used 5,000 randomly selected, unrelated samples as the LD reference panel. We applied a MAF filter of 1 % and, in contrast to the other two approaches, only included autosomal variants that overlap between summary statistics, LD reference panel, and target panel. Each “lassosum” run resulted in up to 76 combinations of the elastic net tuning parameters s and λ, and consequently, in 76 SNP sets with corresponding weights used to construct 76 PRS. We then selected the PRS with the highest pseudo-R2 to define the “lassosum” PRS (see PRS Evaluation below).
+Lassosum obtains PRS weights by applying elastic net penalization to GWAS summary statistics and incorporating LD information from a reference panel (<a href = "https://github.com/tshmak/lassosum">https://github.com/tshmak/lassosum</a>). Here, we used 5,000 randomly selected, unrelated samples as the LD reference panel. We applied a MAF filter of 1 % and, in contrast to the other two approaches, only included autosomal variants that overlap between summary statistics, LD reference panel, and target panel. Each “lassosum” run resulted in up to 76 combinations of the elastic net tuning parameters s and λ, and consequently, in 76 SNP sets with corresponding weights used to construct 76 PRS. We then selected the PRS with the highest pseudo-R2 to define the “lassosum” PRS (see PRS Evaluation below).
 
                 </p>
 
                 <p class="text-justify">
-                   We used the software package “PRS-CS” 27 to define a PRS based on the continuous shrinkage (CS) priors (https://github.com/getian107/PRScs). PRS-CS uses a precomputed LD reference panel based on external European samples of the 1000 Genomes Project (“EUR reference”). We used the default settings (“PRS-CS-auto”), applied a MAF filter of 1 % and only included autosomal variants that overlap between summary statistics, LD reference panel, and target panel.
+                   We used the software package “PRS-CS” 27 to define a PRS based on the continuous shrinkage (CS) priors (<a href ="https://github.com/getian107/PRScs">https://github.com/getian107/PRScs</a>). PRS-CS uses a precomputed LD reference panel based on external European samples of the 1000 Genomes Project (“EUR reference”). We used the default settings (“PRS-CS-auto”), applied a MAF filter of 1 % and only included autosomal variants that overlap between summary statistics, LD reference panel, and target panel.
 
                 </p>
  <p class="text-justify">
-For each cancer and set of GWAS summary statistics, this approach resulted in up to eight PRS, where PRS with less than 5 included variants were excluded and the available GWAS summary statistics limited the available PRS construction techniques in some cases. Using the R package “Rprs” (https://github.com/statgen/Rprs), the value of each PRS was then calculated for each MGI participant and, if the GWAS source was not based on UKB, also for each UKB participant. For comparability of association effect sizes corresponding to the continuous PRS across cancer traits and PRS construction methods, we centered PRS values in MGI and UKB to their mean and scaled them to have a standard deviation of 1.
+For each cancer and set of GWAS summary statistics, this approach resulted in up to eight PRS, where PRS with less than 5 included variants were excluded and the available GWAS summary statistics limited the available PRS construction techniques in some cases. Using the R package “Rprs” (<a href= "https://github.com/statgen/Rprs">https://github.com/statgen/Rprs</a>), the value of each PRS was then calculated for each MGI participant and, if the GWAS source was not based on UKB, also for each UKB participant. For comparability of association effect sizes corresponding to the continuous PRS across cancer traits and PRS construction methods, we centered PRS values in MGI and UKB to their mean and scaled them to have a standard deviation of 1.
 </p>
    <br/><br/>
                 <h4><A name="prseval">PRS Evaluation</A></h4>
@@ -164,7 +166,7 @@ For each cancer and set of GWAS summary statistics, this approach resulted in up
                   For each PRS derived for each GWAS source/method combination, we assessed the following performance measures relative to 
                   observed disease status in MGI and UKB:
                   (1) overall performance with Nagelkerke’s pseudo-R2 using R packages “rcompanion” <sup>28</sup>,
-                  (2) accuracy with Brier score using R package “DescTools” 29; and (3) ability to discriminate between cases and controls as measured by the
+                  (2) accuracy with Brier score using R package “DescTools" <sup>29</sup>; and (3) ability to discriminate between cases and controls as measured by the
                   area under the covariate-adjusted receiver operating characteristic (AROC; semiparametric frequentist inference 30) curve (denoted AAUC)
                   using R package “ROCnReg” <sup>31</sup>.
                 </p>
@@ -223,7 +225,7 @@ For each cancer and set of GWAS summary statistics, this approach resulted in up
                 <p class="text-justify">
                     The online open access visual catalog PRSweb was implemented using Grails, a Groovy- and Java-based backend logic, to integrate interactive visualizations and MySQL databases. 
                   Interactive PheWAS plots are drawn with the JavaScript library “LocusZoom.js” which is maintained by the
-                    UM Center for Statistical Genetics (Locuszoom, see Web Resources) and offers dynamic plotting, automatic plot sizing, and label positioning. Additional data-driven visualizations (e.g. temporal relationship plots) were implemented with the JavaScript library “D3.js”.
+                    UM Center for Statistical Genetics (Locuszoom,< ahref="https://github.com/statgen/locuszoom">https://github.com/statgen/locuszoom </a>) and offers dynamic plotting, automatic plot sizing, and label positioning. Additional data-driven visualizations (e.g. temporal relationship plots) were implemented with the JavaScript library “D3.js”.
                
                 </p>
 
