@@ -1,308 +1,405 @@
-               <H1>EXPRS-METHOD</H1><br/>
-                <H1>Table of Contents</H1><br/>
-                <h4><p><A href="#evaco">Evaluation cohorts</A><BR></p></h4><br/>
+<H1>EXPRS-METHOD</H1>
+<H2>Table of Contents</H1>
 
-                <div class="ml-5">
-                    <h4><A href="#mgi">Michigan Genomics Initiative (MGI)</A><BR></h4><br/>
+<div class="ml-5">
+	<h4><P><A href="#mgi">Michigan Genomics Initiative (MGI)</A></P></h4>
+	<h5><P><A href="#mgicohort">MGI Cohort</A></P></h5>
+	<h5><P><A href="#mgigene">MGI Genotype Data</A></P></h5>
+	<h5><P><A href="#mgiphen">MGI Phenome</A></P></h5>
+</div>
 
-                    <h4><A href="#unbio">UK Biobank (UKB)</A><BR></h4><br/>
+<div class="ml-5">
+	<h4><P><A href="#ukb">UK Biobank cohort (UKB)</A></P></h4>
+	<h5><P><A href="#ukbcohort">UKB Cohort</A></P></h5>
+	<h5><P><A href="#ukbgene">UKB Genotype Data</A></P></h5>
+	<h5><P><A href="#ukbphen">UKB Phenome</A></P></h5>
+</div>
 
-                </div>
-                <h4><p><A href="#prsheaders">PRS</A><BR></p></h4><br/>
+<h4><P><A href="#exdata">Exposure data</A></P></h4>
+<h4><P><A href="#exgwas">Exposure GWAS Summary Statistics</A></P></h4>
 
-                <div class="ml-5">
-                    <h4><P><A href="#prsstruct">PRS Structure</A><BR></h4><br/>
+<h4><P><A href="#statmet">Statistical Methods</A></P></h4>
 
-                    <h4><P><A href="#source">Sources of GWAS summary statistics</A><BR></h4><br/>
+<div class="ml-5">
+	<h5><P><A href="#exprs">ExPRS Construction</A></P></h5>
+	<h6><P><A href="#prsct">LD clumping and P-value Thresholding (C+T)</A></P></h6>
+	<h6><P><A href="#lasso">Lassosum</A></P></h6>
+	<h6><P><A href="#dbslmm">Deterministic Bayesian Sparse Linear Mixed Model (DBSLMM)</A></P></h6>
+	<h6><P><A href="#prscs">PRS-CS</A></P></h6>
+</div>
 
+<div class="ml-5">
+	<h5><P><A href="#exeval">ExPRS Evaluation</A></P></h5>
+	<h6><P><A href="#b_trait">Binary Traits</A></P></h6>
+	<h6><P><A href="#c_trait">Continuous Traits</A> </P></h6>
+</div>
 
-                    <h4><P><A href="#prs">PRS Construction</A></P></h4><BR>
-                    <h4><P><A href="#prseval">PRS Evaluation</A></P></h4><BR>
-                    <h4><P><A href="#asso">Phenome-wide Exploration of PRS Associations</A><BR></P></h4><BR>
+<h4><P><A href="#catalog">Online Visual Catalog: ExPRSweb</A></P></h4>
+<h4><P><A href="#ack">Acknowledgement</A></P></h4>
+<h4><P><A href="#ref">Method References</A></P></h4>
 
-                </div>
+<br>
 
-                <h4><P><A href="#catalog">Online Visual Catalog: PRSweb</A><BR></P></h4><BR>
-                <h4><P><A href="#ref">Method References</A><BR></P></h4><BR>
-                <h1><A name="evaco">Evaluation cohorts</A></h1>
-                <br/>
+<h4><A name="mgi">Michigan Genomics Initiative (MGI)</A></h4>
 
+<h5><A name="mgicohort">MGI Cohort</A></h5>
 
-                <h1><A name="evaco">Evaluation cohorts</A></h1>
-                <br/>
-                <h4><A name="mgi">Michigan Genomics Initiative (MGI)</A></h4>
+<p class="text-justify">Adult participants aged between 18 and 101 years at
+enrollment were recruited through the Michigan Medicine health system
+between 2012 and 2020. Participants
+have consented to allow research on both their biospecimens and EHR data, as
+well as linking their EHR data to national data sources such as medical and
+pharmaceutical claims data. Participants were primarily recruited through the
+MGI - Anesthesiology Collection Effort while awaiting a diagnostic or
+interventional procedure either at a preoperative appointment or on the day of
+their operative procedure at Michigan Medicine. Additional participants were
+recruited through the Michigan Predictive Activity and Clinical Trajectories
+(MIPACT) Study, the Mental Health BioBank (MHB2), and the Michigan Genomics
+Initiative-Metabolism, Endocrinology, and Diabetes (MGI-MEND) Study. The
+data used in this study included diagnoses coded with the Ninth and Tenth
+Revision of the International Statistical Classification of Diseases (ICD9 and ICD10)
+with clinical modifications (ICD9-CM and ICD10-CM), laboratory measurements,
+anthropometrics (height, and body
+mass index [BMI]), vitals (systolic and diastolic blood pressure [SBP and
+DBP]), health behavior (alcohol amount, smoker and drinker), sex, precomputed
+principal components (PCs), genotyping batch, recruitment study, and age. Data
+were collected according to the Declaration of Helsinki principles. MGI study
+participants’ consent forms and protocols were reviewed and approved by the University
+of Michigan Medical School Institutional Review Board (IRB ID HUM00099605 and
+HUM00155849). Opt-in written informed consent was obtained. Additional details about MGI can be found
+online (see <a href="https://precisionhealth.umich.edu/our-research/michigangenomics/">https://precisionhealth.umich.edu/our-research/michigangenomics/</a>).</p>
 
-                <p class="text-justify">
-                    Adult participants aged between 18 and 101 years at enrollment were recruited through the Michigan Medicine health system between 
-                  2012 and 2018 while awaiting diagnostic or interventional procedures either during a preoperative visit prior to the procedure or 
-                  on the day of the procedure that required anesthesia. In addition to coded biosamples and secure, protected health information,
-                  participants understood that all EHR, claims, and national data sources linkable to the participant may be incorporated into the 
-                  MGI databank. Each participant donated a blood sample for genetic analysis, underwent baseline vital sign testing, and completed 
-                  a comprehensive history and physical assessment. We report results obtained from 38,360 unrelated, genotyped patients of inferred 
-                  recent European ancestry with available integrated EHR data (~90 % of all MGI participants were inferred to be of recent European 
-                  ancestry) <sup>1</sup>. The data used in this study included diagnoses coded with the Ninth and Tenth Revision of the International Statistical 
-                  Classification of Diseases (ICD9 and ICD10) with clinical modifications (ICD9-CM and ICD10-CM), sex, precomputed principal components 
-                  (PCs), genotyping batch, and age. Data were collected according to the Declaration of Helsinki principles 2. MGI study participants’ 
-                  consent forms and protocols were reviewed and approved by the University of Michigan Medical School Institutional Review Board 
-                  (IRB ID HUM00099605 and HUM00155849). Opt-in written informed consent was obtained. Additional details about MGI can be found online 
-                  (<a href="https://precisionhealth.umich.edu/our-research/michigangenomics/">"https://precisionhealth.umich.edu/our-research/michigangenomics/</a>). A detailed comparison of the MGI versus UKB cohort (see below) 
-                  can be found in Beesley et al, 2020 <sup>3</sup>.
-                </p>
-                 <br/><br/>
-                </p>
-                <H4><A name="unbio">UK Biobank (UKB)</A></H4>
+<h5><A name="mgigene">MGI Genotype Data </A></h5>
 
-                <p class="text-justify">
-                    UKB is a population-based cohort collected from multiple sites across the United Kingdom and includes over 500,000 participants aged 
-                  between 40 and 69 years when recruited in 2006–2010  <sup>4</sup>. The open-access UK Biobank data used in this study included genotypes, ICD9 and 
-                  ICD10 codes, inferred sex, inferred White British ancestry, kinship estimates down to third degree, birthyear, genotype array, and precomputed
-                  principal components of the genotypes. 
-                </p>
+<p class="text-justify">DNA from 56,984 blood samples was
+genotyped on customized Illumina Infinium CoreExome-24 bead arrays and
+subjected to various quality control filters, resulting in a set of 502,255
+polymorphic variants. Principal components and ancestry were estimated by
+projecting all genotyped samples into the space of the principal components of
+the Human Genome Diversity Project reference panel using PLINK (938
+individuals) [1, 2]. Pairwise kinship was assessed with the software KING [3],
+and the software FastIndep was used to reduce the data to a maximal subset that
+contained no pairs of individuals with 3rd-or closer degree relationship [4].
+We removed participants without EHR data and participants not of recent
+European descent from the analysis, resulting in a final sample of 46,782
+unrelated subjects. Additional genotypes were obtained using the Haplotype
+Reference Consortium reference panel of the Michigan Imputation Server [5] and
+included over 24 million imputed variants with R<sup>2 </sup>above 0.3 and minor allele frequency (MAF) above 0.01%.</p>
 
-                <H2><A name="ukgene"><u>Genotyping, sample quality control and imputation</u></A></H2>
-                <H2><A name=""><u>MGI</u></A></H2>
-                <p class="text-justify">DNA from 47,364 blood samples was genotyped on customized Illumina Infinium CoreExome-24 bead arrays and subjected to various quality control filters, resulting in a set of 392,323 polymorphic variants. Principal components and ancestry were estimated by projecting all genotyped samples into the space of the principal components of the Human Genome Diversity Project reference panel using PLINK (938 individuals) <sup>5; 6</sup>. Pairwise kinship was assessed with the software KING <sup>7</sup>, and the software FastIndep was used to reduce the data to a maximal subset that contained no pairs of individuals with 3rd-or closer degree relationship <sup>8</sup>. We removed participants without EHR data and participants not of recent European descent from the analysis, resulting in a final sample of 38,360 unrelated subjects. Additional genotypes were obtained using the Haplotype Reference Consortium reference panel of the Michigan Imputation Server 9 and included over 24 million imputed variants with R<sup>2</sup><span>&#8805;</span>0.3  and minor allele frequency (MAF)<span>&#8805;</span>0.01%. Genotyping, quality control, and imputation are described in detail elsewhere <sup>1</sup>.</p>
-                <H2><A name=""><u>UK Biobank</u></A></H2>
-                <p class="text-justify">We used the UK Biobank Imputed Dataset (v3) and limited analyses to the documented 408,961 White British<sup>10</sup> individuals and 47,836,001 variants with imputation information score >= 0.3 and MAF >= 0.01% of which 22,846,729 overlapped with the imputed MGI data (see above). Two random subsets of 5,000 and 10,000 unrelated, White British individuals were used for LD analyses of UKB-based summary statistics. </p>
+<h5><A name="mgiphen">MGI Phenome</A></h5>
 
-
-                <H2><A name="ukphen"><u>Phenome generation</u></A></H2>
-                <H2><A name=""><u>MGI</u></A></H2>
-                <p class="text-justify">
-                    The MGI phenome was used as the discovery dataset and was based on ICD9-CM and ICD10-CM code data for 38,360 unrelated, genotyped individuals of recent European ancestry. Longitudinal time-stamped diagnoses were recoded to indicators for whether a patient ever had given a diagnosis code recorded by Michigan Medicine. These ICD9-CM and ICD10-CM codes were aggregated to form up to 1,857 PheCodes using the PheWAS R package (as described in detail elsewhere <sup>1; 11</sup>). For each trait, we identified case and control samples by using the PheCode system where cases had at least one observed diagnosis code of the trait while controls (reference in fitted models) were individuals who did not have any diagnosis codes belonging to the trait and/or to the trait-specific PheCode exclusion list. To minimize differences in age and sex distributions, avoid extreme case-control ratios, and reduce the computational burden, we matched up to 10 controls to each case using the R package “MatchIt” <sup>12 </sup>. Nearest neighbor matching was applied for age and the first four principal components of the genotype data (PC1-4) using Mahalanobis distance with a caliper/width of 0.25 standard deviations. Exact matching was applied for sex and genotyping array. A total of 1,689 case-control studies with >50 cases were used for our analyses of the MGI phenome.
-                </p>
-                <H2><A name=""><u>UK Biobank</u></A></H2>
-                <p class="text-justify">
-                    The UK Biobank phenome was used as a replication dataset and was based on ICD9 and ICD10 code data of 408,961 White British<sup>10</sup>, genotyped individuals that were similarly aggregated to PheCodes as MGI (as described elsewhere<sup>13</sup>). In contrast to MGI, there were many pairwise relationships reported for UKB participants. 
-                To retain a larger effective sample size for each phenotype, we first selected a maximal set of unrelated cases for each phenotype (defined as no pairwise relationship of 3rd degree or closer <sup>8; 14</sup>) before selecting a maximal set of unrelated controls unrelated to these cases. Similar to MGI, we matched up to 10 controls to each case using the R package “MatchIt”<sup>12</sup>. Nearest neighbor matching was applied for birthyear (as proxy for age, because age at diagnosis was not available to us) and PC1-4 (Mahalanobis-metric matching; matching window caliper/width of 0.25 standard deviations), and exact matching was applied for sex and genotyping array. A total of 1,419 case-control studies with >50 cases each were used for our analyses of the UK Biobank phenome. 
-                On average, we were able to match 9 controls per case in the MGI phenome and 9.9 controls per case in the UKB phenome.
-                </p>
-                <br/><br/>
-
-                <h1><A name="prsheaders">PRS</A></h1>
-
-                <H2><A name="prsstruct"><u>PRS Structure</u></A></H2>
-
-                <p class="text-justify">
-                    PRS combine information across a defined set of genetic loci, incorporating each locus’s association with the target trait. The PRS for patient j takes the form  
-                     PRS<sub>j</sub>=∑<sub>i</sub>β<sub>i</sub> G<sub>ij</sub> where i indexes the included loci for that trait, weight β_i is the log odds ratios retrieved from the external GWAS summary statistics for locus i, and G_ij is a continuous version of the measured dosage data for the risk allele on locus i in subject j. In order to construct a PRS, one must determine which genetic loci to include in the PRS and their relative weights. Below, we obtain GWAS summary statistics from several different sources, resulting in several sets of weights for each trait of interest. For each set of weights, we consider several strategies for determining which genetic loci to include in the PRS construction. 
-                </p>
-
-
-                <H2><A name="source"><u>Sources of GWAS summary statistics</u></A></H2>
-
-                <p class="text-justify">
-                    For each of 68 cancers of interest, we collected GWAS summary statistics from up to three different sources:
-                    (1) merged genome-wide significant association signals published in the NHGRI EBI GWAS Catalog <sup>15</sup>
-                    if available; (2) large cancer GWAS meta-analysis if available; and (3) publicly available GWAS summary statistics of phenome x
-                    genome screening efforts of the UK Biobank data<sup>13</sup> (UKB GWAS Neale Lab, <a href ="http://www.nealelab.is/uk-biobank">http://www.nealelab.is/uk-biobank</a>; UKB GWAS Lee Lab, <a href ="https://www.leelabsg.org/resources">https://www.leelabsg.org/resources</a>). If needed,
-                we used LiftOver to convert coordinates of GWAS summary statistics to human genome assembly GRCh37 (UCSC Genome Browser Store,<a href="https://genome-store.ucsc.edu">https://genome-store.ucsc.edu</a>).
-                </p>
+<p class="text-justify">The MGI phenome was based on 
+ICD9-CM and ICD10-CM code data for 46,782 unrelated, genotyped individuals of
+recent European ancestry. Longitudinal time-stamped diagnoses were recoded to
+indicators for whether a patient ever had given a diagnosis code recorded by
+Michigan Medicine. These ICD9-CM and ICD10-CM codes were aggregated to form up
+to 1,814 PheCodes using the PheWAS R package (as described in detail elsewhere [6-8]).
+To minimize differences in age and sex distributions, avoid extreme
+case-control ratios, and reduce the computational burden, we matched up to 10
+controls to each case using the R package “MatchIt” [9]. Nearest neighbor
+matching was applied for age and the first four principal components of the
+genotype data (PC1-4) using Mahalanobis distance with a caliper/width of 0.25
+standard deviations. Exact matching was applied for sex and genotyping array. A
+total of 1,685 case-control studies with &gt;50 cases were used for our
+analyses of the MGI phenome.</p>
 
 
-                <H2><A name="gwas"><u>GWAS Catalog</u></A></H2>
+<h4><A name="ukb">UK Biobank cohort (UKB)</A></h4>
 
-                <p class="text-justify">
-                    We downloaded previously reported GWAS variants from the NHGRI-EBI GWAS Catalog (file version: r2019-05-03) <sup>15; 16</sup>.
-                  Single nucleotide polymorphism (SNP) positions were converted to GRCh37 using variant IDs from dbSNP (build 151; UCSC Genome Browser) after updating outdated dbSNP IDs to their merged dbSNP IDs.
-                </p>
+<h5><A name="ukbcohort">UKB Cohort</A></h5>
 
-                <p class="text-justify">
-                    Entries with missing risk alleles, risk allele frequencies, or SNP-disease odds ratios were excluded. If a reported risk allele did not match any of the
-                    reported forward strand alleles of a non-ambiguous SNP (not A/T or C/G) in the imputed MGI genotype data (which correspond to the alleles of the
-                    imputation reference panel), we assumed minus-strand designation and corrected the effect allele to its complementary base of the forward strand.
-                    Entries with a reported risk allele that did not match any of the alleles of an ambiguous SNP (A/T and C/G) in our data were excluded at this step.
-                    We only included entries with broad European ancestry (as reported by the NHGRI-EBI GWAS Catalog) to match ancestries of discovery GWAS and target
-                    cohorts (MGI and UKB). As a quality control check, we compared the GWAS Catalog reported risk allele frequencies (RAF) with the RAF in MGI individuals.
-                    We then excluded entries whose RAF deviated more than 15%. This chosen threshold is subjective and was based on clear differentiation between correct
-                    and likely flipped alleles on the two diagonals, as noted frequently in GWAS meta-analyses quality control procedures <sup>17</sup>.
-                For SNPs with multiple entries, we kept the SNP with the most recent publication date (and smaller p-value, if necessary) and excluded the others.
+<p class="text-justify">UKB is a population-based cohort
+collected from multiple sites across the United Kingdom and includes over
+500,000 participants aged between 40 and 69 years when recruited in 2006–2010 [10].
+The open-access UK Biobank data used in this study included genotypes, ICD9 and
+ICD10 codes, biomarker data, anthropometrics, vitals, women’s health, health
+behavior, inferred sex, inferred White British ancestry, kinship estimates down
+to third degree, birthyear, genotype array, and precomputed principal
+components of the genotypes. UK Biobank received ethical approval from the NHS
+National Research Ethics Service North West (11/NW/0382).</p>
 
-                </p>
+<h5><A name="mgigene">UKB Genotype Data</A></h5>
 
-                <H2><A name="metan"><u>Large GWAS meta-analyses</u></A></H2>
+<p class="text-justify">We used the UK Biobank Imputed
+Dataset (v3) and limited analyses to the documented 408,595 White British [11]
+individuals and 47,836,001 variants with imputation information score &gt;= 0.3
+and MAF &gt;= 0.01% of which 22,933,317
+overlapped with the imputed MGI data (see above). Two random subsets of 5,000
+and 10,000 unrelated, White British individuals were used for LD analyses of
+UKB-based summary statistics. Genotyping, quality control, and imputation are
+described in detail elsewhere [6].</p>
 
-                <p class="text-justify">
-                    We downloaded full GWAS summary statistics made available by the “Breast Cancer Association Consortium” (BCAC)<sup>14</sup>
-                    , the “Prostate Cancer Association Group to Investigate Cancer Associated Alterations in the Genome” (PRACTICAL) <sup>17</sup>,
-                and the “Ovarian Cancer Association Consortium” (OCAC) <sup>19 ; 20</sup>. In addition, we extracted partial GWAS summary statistics that accompanied
-                recent publications but were incomplete, i.e. reporting only SNPs below a certain p-value threshold <sup>21-24</sup>.
-                GWAS summary statistics were harmonized and, if needed, lifted over to human genome assembly GRCh37.
-                In this paper, this source is referred to as “Large GWAS”.
-                </p>
 
-                <H2><A name="ukgwas"><u>UK-Biobank-based GWAS</u></A></H2>
+<h5><A name="mgiphen">UKB Phenome</A></h5>
 
-                <p class="text-justify">
-                    We downloaded UK Biobank based GWAS summary statistics from two public repositories.
-                </p>
+<p class="text-justify">The UK Biobank phenome was based on
+ICD9 and ICD10 code data of 408,595 White British [11], genotyped individuals
+that were similarly aggregated to PheCodes as MGI (see above, also described
+elsewhere [12]). In contrast to MGI, there were many pairwise relationships
+reported for UKB participants. </p>
 
-                <p class="text-justify">
-                    The first set of UK Biobank GWAS summary statistics were based on the analysis of up to 408,961 White British European-ancestry samples (UKB GWAS Lee Lab, see Web Resources).
-                    SNP-disease odds ratios were estimated using logistic mixed modeling adjusting for sample relatedness, and p-values were estimated using saddlepoint approximations (SAIGE method)<sup>24</sup>
-                    to calibrate the distribution of score test statistics and, thus, control for unbalanced case-control ratios. The underlying phenotypes were auto-curated phenotypes based on the PheCodes of the PheWAS R package <sup>1; 8; 12</sup>
-                    similar to the phenomes used in our study and in the following are referred to as “UKB PHECODE”.
-                </p>
+<p class="text-justify">To retain a larger effective sample
+size for each phenotype, we first selected a maximal set of unrelated cases for
+each phenotype (defined as no pairwise relationship of 3<sup>rd</sup> degree or
+closer [4, 13]) before selecting a maximal set of unrelated controls unrelated
+to these cases. Similar to MGI, we matched up to 10 controls to each case using
+the R package “MatchIt” [9]. Nearest neighbor matching was applied for
+birthyear (as proxy for age because age at diagnosis was not available to us)
+and PC1-4 (Mahalanobis-metric matching; matching window caliper/width of 0.25
+standard deviations), and exact matching was applied for sex and genotyping
+array. A total of 1,419 matched case-control studies with &gt;50 cases each
+were used for our analyses of the UK Biobank phenome. </p>
 
-                <p class="text-justify">
-                    The first set of UK Biobank GWAS summary statistics were based on the analysis of up to 408,961 White British European-ancestry samples (UKB GWAS Lee Lab, https://www.leelabsg.org/resources). SNP-disease odds ratios were estimated using logistic mixed modeling adjusting for sample relatedness, and p-values were estimated using saddlepoint approximations (SAIGE method)25 to calibrate the distribution of score test statistics and, thus, control for unbalanced case-control ratios. The underlying phenotypes were auto-curated phenotypes based on the PheCodes of the PheWAS R package 1; 11; 13 similar to the phenomes used in our study and in the following are referred to as “UKB PHECODE”.  </p>
-</p>          
-                <p class="text-justify">
-                The second set of UK Biobank GWAS summary statistics were based on a linear regression model of up to 361,194 unrelated White British samples adjusting for relevant covariates (UKB GWAS Neale Lab, http://www.nealelab.is/uk-biobank). Three phenotype models were used in their analyses: (1) “PHESANT”: auto-curated phenotypes using PHEnome Scan ANalysis Tool, (2) “ICD10”: individuals with the same ICD10 category code (first three characters, e.g. “C50”) were used as cases while all non-coded individuals were treated as controls, and (3) “FINNGEN”: curated phenotypes / endpoints based on definitions of the Finngen consortium. In addition to the “UKB PHECODE” (described above), these three latter sources are referred to as “UKB PHESANT”, “UKB ICD10” and “UKB FINNGEN”, respectively (FINNGEN Clinical Endpoints, https://www.finngen.fi/en/researchers/clinical-endpoints; PHESANT, https://github.com/MRCIEU/PHESANT).
+<h4><A name="exdata">Exposure data</A></h4>
+
+<p class="text-justify">For a set of 21 continuous and 7
+binary exposures for which we could find freely available and complete GWAS summary
+statistics we extracted the corresponding EHR data. For the binary common disorder
+(type 2 diabetes, hypertension, insomnia, and sleep apnea) we use the PheWAS
+code-based definitions (see MGI and UKB phenome above). Survey based measures
+with multiple responses per person (never/past/current alcohol use and smoking
+status) were recoded to never / ever responses. Continuous exposures with
+multiple measurements across multiple visits (e,g, BMI, biomarkers, or blood
+pressure values) were harmonized as follows: we first removed outliers per
+individual per trait by using the interquartile range (IQR) criterion. Next, we
+aggregated multiple entries per individual by using the mean value across
+multiple entries per person per trait as the value of the corresponding
+continuous trait. For the UKB cohort, we calculated the estimated Glomerular
+Filtration Rate (eGFR) on the natural scale using the harmonized serum
+creatinine values (data field 30700), race and sex information and the Chronic
+Kidney Disease Epidemiology Collaboration (CKD-EPI) equation [14].</p>
+
+
+<h4><A name="exgwas">Exposure GWAS Summary Statistics</A></h4>
+
+<p class="text-justify">For each of the 28 exposures, we
+collected complete GWAS summary statistics from up to four different sources:
+(1) catalogued GWAS of the NHGRI EBI GWAS Catalog[15] (2) GWAS from the FinnGen
+Consortium; (3) published GWAS meta-analyses; and (4) publicly available GWAS
+summary statistics of phenome x genome screening efforts of the UK Biobank data
+(Lee and Neale Lab, <a href="https://www.leelabsg.org/resources">https://www.leelabsg.org/resources</a>
+and <a href="https://github.com/Nealelab/UK_Biobank_GWAS">https://github.com/Nealelab/UK_Biobank_GWAS</a>).
+We only included GWAS summary statistics of studies that analyzed broad
+European ancestry to match the ancestry of discovery GWAS and target cohorts
+(MGI and UKB).</p>
+
+<p class="text-justify">If needed, we lifted over
+coordinates of GWAS summary statistics to human genome assembly GRCh37
+(LiftOver, UCSC Genome Browser Store, <a href="https://genome-store.ucsc.edu">https://genome-store.ucsc.edu</a>).
+Entries with missing effect alleles, or effect sizes were excluded. If effect
+allele frequency (EAF) was reported in the summary statistics, we also compared
+EAF between the discovery GWAS and the target dataset (MGI and/or UKB). If the
+proportion of likely flipped alleles (whose RAF deviated more than 15% between
+the datasets) was above 40% we excluded the GWAS as source for PRS
+construction. These chosen thresholds were subjective and based on clear
+differentiation between correct and likely flipped alleles on the two
+diagonals, as noted frequently in GWAS meta-analyses quality control
+procedures.</p>
+
+
+<h4><A name="statmet">Statistical Methods</A></h4>
+
+<h5><A name="exprs">ExPRS Construction</A></h5>
+
+<p class="text-justify"><span style='color:black;
+background:white'>We constructed the PRS for an individual j in the form </span>PRS<i><sub>j</sub></i>=<span
+style='font-size:12.0pt;font-family:"Arial",sans-serif;position:relative;
+top:4.0pt'><img width=39 height=16 src="ExPRSweb_MethodsTab.fld/image001.png"></span> where
+<i>i </i>indexes the included variants for that trait, weight <span
+style='font-size:12.0pt;font-family:"Arial",sans-serif;position:relative;
+top:3.0pt'><img width=10 height=14 src="ExPRSweb_MethodsTab.fld/image002.png"></span> is
+the log odds ratios retrieved from the external GWAS summary statistics for
+variant <i>i,</i> and <span
+style='font-size:12.0pt;font-family:"Arial",sans-serif;position:relative;
+top:4.0pt'><img width=15 height=16 src="ExPRSweb_MethodsTab.fld/image003.png"></span> is
+a continuous version of the measured dosage data for the risk allele of variant
+<i>i</i> in subject <i>j. </i>To construct a PRS, one must determine which
+genetic loci to include in the PRS and their relative weights. We have obtained
+GWAS summary statistics from several external sources, resulting in several
+sets of weights for each trait of interest. For each set of weights obtained from GWAS summary statistics
+from the above-mentioned sources and each trait, we generated for each exposure
+GWAS up to 5 different PRSs reflecting the 5 implementations of 4 different PRS
+methods: the C + T (both, best guess genotype [GT] and dosage [DS] version)[16-18], lassosum,
+DBSLMM[20] and PRS-CS[21].</p>
+
+<h6><A name="prsct">LD clumping and P-value Thresholding (C+T)</A></h6>
+
+<p class="text-justify">We performed linkage disequilibrium (LD)
+clumping/pruning of variants with p-values below 0.1 by using the imputed
+allele dosages of 10,000 randomly selected samples and a pairwise correlation
+cut-off at r<sup>2 </sup>&lt; 0.1 within 1Mb window. We constructed many
+different PRS across a fine grid of p-value thresholds. The p-value threshold
+with the highest pseudo-R<sup>2</sup> (binary trait) or highest R<sup>2</sup>
+(continuous traits) (see <b>PRS Evaluation</b> below) was used to define the
+optimized “Clumping and Thresholding (C &amp; T)” PRS. We applied two
+approaches for LD clumping: C + T (GT) and C+T (DS). Specifically, the “C +T
+(GT)” is implemented by plink-1.9 using the best guess genotypes (GT, imputed
+genotype dosages are rounded to the next integer) for LD calculations, while
+“C+T (DS)” is implemented in R and considers the uncertainty of imputed
+genotypes by using the dosage data (DS).</p>
+
+<h6><A name="lasso">Lassosum</A></h6>
+
+<p class="text-justify">Lassosum obtains PRS weights by
+applying elastic net penalization to GWAS summary statistics and incorporating
+LD information from a reference panel. Here, we used 5,000 randomly selected,
+unrelated samples as the LD reference panel. We applied a MAF filter of 1 %
+and, in contrast to the previous two approaches, only included autosomal
+variants that overlap between summary statistics, LD reference panel, and
+target panel. Each “Lassosum” run resulted in up to 76 combinations of the
+elastic net tuning parameters s and λ, and consequently, in 76 SNP sets with
+corresponding weights used to construct. We then selected the PRS with the pseudo-R<sup>2</sup>
+(binary trait) or highest R<sup>2</sup> (continuous traits) to define the
+“Lassosum” PRS (see <b>PRS Evaluation</b> below).</p>
+
+<h6><A name="dbslmm">Deterministic Bayesian Sparse Linear Mixed Model (DBSLMM)</A></h6>
+
+<p class="text-justify">DBSLMM assumes that the true SNP
+effect sizes derive from a mixture of normal distributions and relies on an
+efficient deterministic search algorithm for statistical inference. DBSLMM
+requires both GWAS summary statistics and LD information from a reference
+panel. Specifically, DBSLMM first selects SNPs with large effect in a
+deterministic fashion through the C+T procedure and then directly obtains both
+large SNP effect sizes and small SNP effect sizes through analytic forms. Here,
+we used 5,000 randomly selected unrelated samples as the LD reference panel. We
+applied a MAF filter of 1% and only included autosomal variants that overlap
+between summary statistics, LD reference panel, and target panel. Heritability
+estimates obtained from gemma (see above-mentioned procedure) were used as the
+input of DBSLMM. All other parameters we used are the default parameters in the
+“DBSLMM” software. For example, we set the cutoff of SNPs clumping and pruning
+to be r<sup>2</sup>&lt; 0.1 within a 1Mb window and <i>p</i>-value &lt; 1e-06,
+respectively. Each DBSLMM run resulted in one SNP set with corresponding
+weights to construct the PRS. We used the default version of DBSLMM which does
+not require cross-validation and refer to the obtained PRS as “DBSLMM” PRS.</p>
+
+<h6><A name="prscs">PRS-CS</A></h6>
+
+<p class="text-justify">PRS-CS utilizes a Bayesian
+regression framework and assumes a continuous shrinkage (CS) prior on the
+effect sizes. Specifically, we applied the default “auto” version of PRS-CS
+that obtain weights through Gibbs sampling algorithm. Here, PRS-CS-auto uses a precomputed
+LD reference panel based on external European samples of the 1000 Genomes
+Project (“EUR reference”) to construct a PRS. We applied a MAF filter of 1 %
+and only included autosomal variants that overlap between summary statistics,
+LD reference panel, and target panel. The obtained PRS is referred to as
+“PRS-CS” PRS.</p>
+
+<p class="text-justify">For each trait and
+set of GWAS summary statistics, these approaches usually resulted in up to five
+PRS. However, approaches that resulted in less than 5 weights / variants were
+excluded. Using the R package “Rprs” (<a href="https://github.com/statgen/Rprs">https://github.com/statgen/Rprs</a>),
+the value of each PRS was then calculated for each MGI participant and, if the
+GWAS source did to the best of our knowledge did not include UKB samples, also
+for each UKB participant. For comparability of association effect sizes
+corresponding to the continuous PRS across exposures and PRS construction
+methods, we centered PRS values in MGI and UKB to a mean of 0 and scaled them
+to have a standard deviation of 1.</p>
+
+<h5><A name="exeval">ExPRS Evaluation</A></h5>
+
+<p class="text-justify">To assess the predictive performance
+of these generated PRS, each PRS was assessed through cross-validation in
+either the MGI cohort or the UKB cohort: we split the data corresponding to
+each trait in training (50% of the samples with gender ratio unchanged) and
+test set (50% of the samples with gender ratio unchanged). We used the training
+set to determine the PRS tuning parameter(s) and used the testing set to obtain
+performance metric for that PRS. </p>
+
+<p class="text-justify">For the PRS evaluations, except for when computing the pseudo-R<sup>2
+</sup>for binary traits (which is a measure of marginal association of the ExPRS
+with the exposure)[22], we fit the following model for each PRS and exposure
+adjusting for covariates:</p>
+
+<p class="text-justify">g(E(Exposure |
+PRS, Age, Sex, Array, PC)) =<span
+style='font-size:12.0pt;font-family:"Arial",sans-serif;position:relative;
+top:4.0pt'><img width=306 height=16 src="ExPRSweb_MethodsTab.fld/image004.png"></span>,                                                                                             
+(1)</p>
+
+<p class="text-justify">where the PCs were the first four
+principal components obtained from the principal component analysis of the
+genotyped GWAS markers, where “Age” was the age at last observed diagnosis in
+MGI and birthyear in UKB and where “Array” represents the genotyping array.</p>
+
+<h6><A name="b_trait">Binary Traits</A></h6>
+
+<p class="text-justify">We used Nagelkerke’s pseudo-R<sup>2</sup>
+to select the tuning parameters within the “C+T” and Lassosum construction
+methods (P-value for “C+T” SNP sets; s and λ for Lassosum) and kept the PRS
+with the highest pseudo-R<sup>2</sup> for further analyses. For each PRS
+derived for each GWAS source/method combination, we assessed the following
+performance measures relative to observed disease status in MGI and UKB: (1)
+overall performance with Nagelkerke’s pseudo-R<sup>2</sup> using R packages
+“rcompanion”, (2) accuracy with Brier score using R package “DescTools”; and
+(3) ability to discriminate between cases and controls as measured by the area
+under the covariate-adjusted receiver operating characteristic (AROC; semiparametric frequentist inference)
+curve (denoted AAUC) using R package “ROCnReg”. Firth's bias reduction method
+was used to resolve the problem of separation in logistic regression (R package
+“brglm2”).</p>
+
+<h6><A name="c_trait">Continuous Traits</A></h6>
+
+<p class="text-justify">For the PRS evaluations of
+continuous traits, we used R<sup>2</sup>
+to select the tuning parameters within the “C+T” and Lassosum construction
+methods (P-value for “C+T” SNP sets; s and λ for Lassosum) and kept the PRS
+with the highest R<sup>2</sup> for further analyses. For each PRS derived for
+each GWAS source/method combination, we assessed the prediction performance in
+terms of R<sup>2</sup> in MGI and UKB.</p>
+
+<p class="text-justify">Unless otherwise stated, analyses were performed using R 4.1.1.</p>
+
+<h4><A name="catalog">Online Visual Catalog: ExPRSweb</A></h4>
+  
+<p class="text-justify">The online open access visual catalog <i>ExPRSweb</i> was implemented using Grails as previously described [8]. </p>
+
+<h4><A name="ack">Acknowledgement</A></h4>
+
+<p class="text-justify">The authors acknowledge the
+Michigan Genomics Initiative participants, Precision Health at the University
+of Michigan, and the University of Michigan Medical School Data Office for
+Clinical and Translational Research, the University of Michigan Medical School
+Central Biorepository, and the University of Michigan Advanced Genomics Core
+for providing data storage, management, processing, and distribution services,
+and the Center for Statistical Genetics in the Department of Biostatistics at
+the School of Public Health for genotype data curation, imputation, and
+management in support of the research reported in this publication.<br>
+Part of this research has been conducted using both the UK Biobank Resource
+under application number 24460 and using results and data generated by previous
+researchers who have used the UK Biobank Resource.</p>
+This material is based in part upon
+work supported by the National Institutes of Health/NIH (NCI P30CA046592 [LGF,
+BM]), by the University of Michigan (UM-Precision Health Investigators Award
+U063790 [LGF, SP, YM, BM]), and by the National Science Foundation under grant
+number DMS-1712933. Any opinions, findings, and conclusions or recommendations
+expressed in this material are those of the author(s) and do not necessarily
+reflect the views of the National Science Foundation. </p>
+
+<h4><A name="ref">Method References</A></h4>
+
+<p class="text-justify">
+	<ol>
+		<li>Wang, C., et al., <i>Ancestry estimation and control of population stratification for sequence-based association studies.</i> Nat Genet, 2014. <b>46</b>(4): p. 409-15.</li>
+		<li>Li, J.Z., et al., <i>Worldwide human relationships inferred from genome-wide patterns of variation.</i> Science, 2008. <b>319</b>(5866): p. 1100-4.</li>
+		<li>Manichaikul, A., et al., <i>Robust relationship inference in genome-wide association studies.</i> Bioinformatics, 2010. <b>26</b>(22): p. 2867-73.</li>
+		<li>Abraham, K.J. and C. Diaz, <i>Identifying large sets of unrelated individuals and unrelated markers.</i> Source Code Biol Med, 2014. <b>9</b>(1): p. 6.</li>
+		<li>McCarthy, S., et al., <i>A reference panel of 64,976 haplotypes for genotype imputation.</i> Nat Genet, 2016. <b>48</b>(10): p. 1279-83.</li>
+		<li>Fritsche, L.G., et al., <i>Association of Polygenic Risk Scores for Multiple Cancers in a Phenome-wide Study: Results from The Michigan Genomics Initiative.</i> Am J Hum Genet, 2018. <b>102</b>(6): p. 1048-1061.</li>
+		<li>Carroll, R.J., L. Bastarache, and J.C. Denny, <i>R PheWAS: data analysis and plotting tools for phenome-wide association studies in the R environment.</i> Bioinformatics, 2014. <b>30</b>(16): p. 2375-6.</li>
+		<li>Fritsche, L.G., et al., <i>Cancer PRSweb: An Online Repository with Polygenic Risk Scores for Major Cancer Traits and Their Evaluation in Two Independent Biobanks.</i> Am J Hum Genet, 2020. <b>107</b>(5): p. 815-836.</li>
+		<li>Ho, D.E., et al., <i>MatchIt: Nonparametric Preprocessing for Parametric Causal Inference.</i> Journal of Statistical Software, 2011. <b>42</b>(8): p. 1-28.</li>
+		<li>Sudlow, C., et al., <i>UK biobank: an open access resource for identifying the causes of a wide range of complex diseases of middle and old age.</i> PLoS Med, 2015. <b>12</b>(3): p. e1001779.</li>
+		<li>Bycroft, C., et al., <i>Genome-wide genetic data on ~500,000 UK Biobank participants.</i> bioRxiv, 2017.</li>
+		<li>Zhou, W., et al., <i>Efficiently controlling for case-control imbalance and sample relatedness in large-scale genetic association studies.</i> Nat Genet, 2018. <b>50</b>(9): p. 1335-1341.</li>
+		<li>Michailidou, K., et al., <i>Association analysis identifies 65 new breast cancer risk loci.</i> Nature, 2017. <b>551</b>(7678): p. 92-94.</li>
+		<li>Levey, A.S., et al., <i>A new equation to estimate glomerular filtration rate.</i> Ann Intern Med, 2009. <b>150</b>(9): p. 604-12.</li>
+		<li>Buniello, A., et al., <i>The NHGRI-EBI GWAS Catalog of published genome-wide association studies, targeted arrays and summary statistics 2019.</i> Nucleic acids research, 2019. <b>47</b>(D1): p. D1005-D1012.</li>
+		<li>Wray, N.R., M.E. Goddard, and P.M. Visscher, <i>Prediction of individual genetic risk to disease from genome-wide association studies.</i> Genome Res, 2007. <b>17</b>(10): p. 1520-8.</li>
+		<li>International Schizophrenia, C., et al., <i>Common polygenic variation contributes to risk of schizophrenia and bipolar disorder.</i> Nature, 2009. <b>460</b>(7256): p. 748-52.</li>
+		<li>Euesden, J., C.M. Lewis, and P.F. O'Reilly, <i>PRSice: Polygenic Risk Score software.</i> Bioinformatics, 2015. <b>31</b>(9): p. 1466-8.</li>
+		<li>Mak, T.S.H., et al., <i>Polygenic scores via penalized regression on summary statistics.</i> Genet Epidemiol, 2017. <b>41</b>(6): p. 469-480.</li>
+		<li>Yang, S. and X. Zhou, <i>Accurate and Scalable Construction of Polygenic Scores in Large Biobank Data Sets.</i> Am J Hum Genet, 2020. <b>106</b>(5): p. 679-693.</li>
+		<li>Ge, T., et al., <i>Polygenic prediction via Bayesian regression and continuous shrinkage priors.</i> Nat Commun, 2019. <b>10</b>(1): p. 1776.</li>
+		<li>Nagelkerke, N.J., <i>A note on a general definition of the coefficient of determination.</i> Biometrika, 1991. <b>78</b>(3): p. 691-692.</li>
+	</ol>
 </p>
-                <h4><A name="prs">PRS Construction</A></h4>
-
-                <p class="text-justify">
-                    For each set of GWAS summary statistics from the above-mentioned sources and each cancer, we develop up to seven different PRS using three 
-                  different construction methods.
-                    Our goal of this approach was to compare multiple PRS methods and find the method that works best for the various types 
-                  of GWAS summary statistics.
-                </p>
-
-                <p class="text-justify">
-                    For the first two construction strategies, we performed LD clumping/pruning of variants with p-values below 10<sup>-4</sup> by using the imputed allele dosages of 10,000 randomly selected
-                samples and a pairwise correlation cut-off at r<sup>2</sup> <span>&#x3c;</span> 0.1 within 1Mb window. Using the resulting loci, we defined up to five sub-sets of variants with p-values
-                below different thresholds (<5x10<sup>-9</sup> to <5x10<sup>-5</sup>). These were used to construct a PRS tied to each threshold, where the PRS associated with p-values less than 5x10<sup>-8</sup>
-                    is sometimes denoted as “GWAS hits.” For the second PRS construction method, we construct many different PRS across a fine grid of p-value thresholds.
-                    The p-value threshold with the highest pseudo-R2 (see PRS Evaluation below) was used to define the more optimized “Pruning and Thresholding (P & T)” PRS.
-                </p>
-
-                <p class="text-justify">
-                   As an alternative to the p-value thresholding and “P&T” PRS construction strategies, we also used the software package “lassosum” 26 and “PRS-CS” 27 to define a third type of PRS for GWAS sources with full summary statistics.
-Lassosum obtains PRS weights by applying elastic net penalization to GWAS summary statistics and incorporating LD information from a reference panel (<a href = "https://github.com/tshmak/lassosum">https://github.com/tshmak/lassosum</a>). Here, we used 5,000 randomly selected, unrelated samples as the LD reference panel. We applied a MAF filter of 1 % and, in contrast to the other two approaches, only included autosomal variants that overlap between summary statistics, LD reference panel, and target panel. Each “lassosum” run resulted in up to 76 combinations of the elastic net tuning parameters s and λ, and consequently, in 76 SNP sets with corresponding weights used to construct 76 PRS. We then selected the PRS with the highest pseudo-R2 to define the “lassosum” PRS (see PRS Evaluation below).
-
-                </p>
-
-                <p class="text-justify">
-                   We used the software package “PRS-CS” 27 to define a PRS based on the continuous shrinkage (CS) priors (<a href ="https://github.com/getian107/PRScs">https://github.com/getian107/PRScs</a>). PRS-CS uses a precomputed LD reference panel based on external European samples of the 1000 Genomes Project (“EUR reference”). We used the default settings (“PRS-CS-auto”), applied a MAF filter of 1 % and only included autosomal variants that overlap between summary statistics, LD reference panel, and target panel.
-
-                </p>
- <p class="text-justify">
-For each cancer and set of GWAS summary statistics, this approach resulted in up to eight PRS, where PRS with less than 5 included variants were excluded and the available GWAS summary statistics limited the available PRS construction techniques in some cases. Using the R package “Rprs” (<a href= "https://github.com/statgen/Rprs">https://github.com/statgen/Rprs</a>), the value of each PRS was then calculated for each MGI participant and, if the GWAS source was not based on UKB, also for each UKB participant. For comparability of association effect sizes corresponding to the continuous PRS across cancer traits and PRS construction methods, we centered PRS values in MGI and UKB to their mean and scaled them to have a standard deviation of 1.
-</p>
-   <br/><br/>
-                <h4><A name="prseval">PRS Evaluation</A></h4>
-
-                <p class="text-justify">For the PRS evaluations, except for when computing the pseudo-R2 (which is a measure of marginal association of the PRS with the outcome), we fit the following model for each PRS and cancer phenotype adjusting for covariates:
-                </p>
-
-                <p class="text-justify">
-                    logit (P(Phenotype is present | PRS,Age, Sex, Array, PC)) =β<sub>0</sub>+β<sub>PRS</sub> PRS+β<sub>Age</sub>Age+ β<sub>Sex</sub>Sex+β<<sub>Array</sub>Array+β PC
-                </p>
-
-                <p class="text-justify">
-                    We used Nagelkerke’s pseudo-R2 <sup>28 </sup> to select the tuning parameters within the “P&T” and lassosum construction methods 
-                  (P-value for “P&T” SNP sets; s and λ for lassosum) and kept the PRS with the highest pseudo-R2 for further analyses. 
-                  For each PRS derived for each GWAS source/method combination, we assessed the following performance measures relative to 
-                  observed disease status in MGI and UKB:
-                  (1) overall performance with Nagelkerke’s pseudo-R2 using R packages “rcompanion” <sup>28</sup>,
-                  (2) accuracy with Brier score using R package “DescTools" <sup>29</sup>; and (3) ability to discriminate between cases and controls as measured by the
-                  area under the covariate-adjusted receiver operating characteristic (AROC; semiparametric frequentist inference 30) curve (denoted AAUC)
-                  using R package “ROCnReg” <sup>31</sup>.
-                </p>
-
-                <p class="text-justify">
-                    For cross-validation purposes, we split the data corresponding to each trait in a phenome into training and test set. To retain case-control matching (see “Phenome generation” above),
-                  we randomly and equally distributed unique strata from matching and thus obtained a 50/50% split of cases where their matched controls were assigned to the same subset. 
-                  We used the training set to determine the PRS tuning parameter(s) with the highest pseudo-R2 and used the testing set to obtain performance metric for that PRS. 
-                  Firth's bias reduction method was used to resolve the problem of separation in logistic regression (R package “brglm2”)<sup>32; 33 </sup>.
-                </p>
-                <br/><br/>
-
-                <h4><A name="testing">PRS Association Testing</A></h4>
-
-                <p class="text-justify">
-                   Next, we assessed the strength of the relationship between these PRS and the traits they were designed for. To do this we fit the following model for each PRS and cancer phenotype adjusting for various covariates:
-                </p>
-
-                <p class="text-justify">
-                    logit (P(Phenotype is present | PRS, Age, Sex, Array, PC)) =β<sub>0</sub>+β<sub>PRS</sub>PRS+β<sub>Age</sub> Age+ β<sub>Sex</sub>Sex+β<sub>Array</sub>Array+β PC,
-                </p>
-
-                <p class="text-justify">
-                    where the PCs were the first four principal components obtained from the principal component analysis of the genotyped GWAS markers, 
-                  where “Age” was the age at last observed diagnosis in MGI and birthyear in UKB and where “Array” represents the genotyping array.
-                  Our primary interest is β_PRS, while the other factors (Age, Sex and PC) were included to address potential residual confounding 
-                  and do not provide interpretable estimates due to the preceding application of case-control matching. Firth's bias reduction method
-                  was used to resolve the problem of separation in logistic regression (Logistf in R package “EHR”) . <sup>34-36</sup>
-                </p>
-
-                <p class="text-justify">
-                   To study the ability of the PRS to identify high risk patients, we fit the above model but replacing the PRS with an indicator for whether the PRS value was in the top 1, 2, 5, 10, or 25% (defined in controls) among the matched case control cohort. 
-                </p>
-                <br/><br/>
-
-                <h4><A name="ref">Phenome-wide Exploration of PRS Associations</A></h4>
-                <p class="text-justify">
-                    We selected PRS that were strongly associated with the cancer trait they weredesigned for phenome-wide association exploration in the phenomes of MGI and UKB for
-                    (p-value <span>&#x2264;</span> (0.05 / [#phenotypes in corresponding phenome]); see below).
-                </p>
-
-                <p class="text-justify">
-                    We conducted PheWAS in MGI and also UKB (if the GWAS source was not based on UKB) to identify additional,
-                    secondary phenotypes associated with the PRS <sup>37</sup>. To evaluate PRS-phenotype associations, we conducted
-                Firth bias-corrected logistic regression by fitting model of equation 1 above for each PRS and each phenotype of the corresponding phenome.
-                To adjust for multiple testing, we applied the conservative phenome-wide Bonferroni correction according to the total number of analyzed PheCodes (MGI: 1,689 phenotypes; UKB: 1,419 phenotypes). 
-                In Manhattan plots, we present –log10(p-value) corresponding to tests of H<sub>0</sub>: β<sub>PRS</sub>=0.  Directional triangles on the PheWAS plot indicate whether a phenome-wide significant trait was positively (pointing up) or negatively (pointing down) associated with the PRS
-                </p>
-
-                <p class="text-justify">
-                    To investigate the possibility of the secondary trait associations with PRS being completely driven by the primary trait association, we performed a second set of PheWAS after excluding individuals affected with the primary or related cancer traits for which the PRS was constructed, referred to as “Exclusion-PRS-PheWAS” as described previously <sup>1</sup>.  </p>
-                <br/><br/>
-
-                <h4><A name="catalog">Online Visual Catalog: PRSweb</A></h4>
-
-                <p class="text-justify">
-                    The online open access visual catalog PRSweb was implemented using Grails, a Groovy- and Java-based backend logic, to integrate interactive visualizations and MySQL databases. 
-                  Interactive PheWAS plots are drawn with the JavaScript library “LocusZoom.js” which is maintained by the
-                    UM Center for Statistical Genetics (Locuszoom,< ahref="https://github.com/statgen/locuszoom">https://github.com/statgen/locuszoom </a>) and offers dynamic plotting, automatic plot sizing, and label positioning. Additional data-driven visualizations (e.g. temporal relationship plots) were implemented with the JavaScript library “D3.js”.
-               
-                </p>
-
-                <p class="text-justify"> Unless otherwise stated, analyses were performed using R 3.6.1 <sup>38</sup></p>
-                <br/><br/>
-                <h4><A name="ref">Method References</A></h4>
-
-                <p class="text-justify">
-                <ol>
-                <li>Fritsche, L.G., Gruber, S.B., Wu, Z., Schmidt, E.M., Zawistowski, M., Moser, S.E., Blanc, V.M., Brummett, C.M., Kheterpal, S., Abecasis, G.R., et al. (2018). Association of Polygenic Risk Scores for Multiple Cancers in a Phenome-wide Study: Results from The Michigan Genomics Initiative. Am J Hum Genet 102, 1048-1061</li>
-                <li>World Medical Association. (2013). World Medical Association Declaration of Helsinki: ethical principles for medical research involving human subjects. JAMA 310, 2191-2194.</li>
-                <li>Beesley, L.J., Salvatore, M., Fritsche, L.G., Pandit, A., Rao, A., Brummett, C., Willer, C.J., Lisabeth, L.D., and Mukherjee, B. (2020). The emerging landscape of health research based on biobanks linked to electronic health records: Existing resources, statistical challenges, and potential opportunities. Stat Med 39, 773-800.</li>
-                <li>Sudlow, C., Gallacher, J., Allen, N., Beral, V., Burton, P., Danesh, J., Downey, P., Elliott, P., Green, J., Landray, M., et al. (2015). UK biobank: an open access resource for identifying the causes of a wide range of complex diseases of middle and old age. PLoS Med 12, e1001779.</li>
-                <li> Wang, C., Zhan, X., Bragg-Gresham, J., Kang, H.M., Stambolian, D., Chew, E.Y., Branham, K.E., Heckenlively, J., Study, F., Fulton, R., et al. (2014). Ancestry estimation and control of population stratification for sequence-based association studies. Nat Genet 46, 409-415.</li>  
-                <li> Li, J.Z., Absher, D.M., Tang, H., Southwick, A.M., Casto, A.M., Ramachandran, S., Cann, H.M., Barsh, G.S., Feldman, M., Cavalli-Sforza, L.L., et al. (2008). Worldwide human relationships inferred from genome-wide patterns of variation. Science 319, 1100-1104.</li>
-                <li>Manichaikul, A., Mychaleckyj, J.C., Rich, S.S., Daly, K., Sale, M., and Chen, W.M. (2010). Robust relationship inference in genome-wide association studies. Bioinformatics 26, 2867-2873.</li>
-                <li>Abraham, K.J., and Diaz, C. (2014). Identifying large sets of unrelated individuals and unrelated markers. Source Code Biol Med 9, 6.</li>
-                <li>McCarthy, S., Das, S., Kretzschmar, W., Delaneau, O., Wood, A.R., Teumer, A., Kang, H.M., Fuchsberger, C., Danecek, P., Sharp, K., et al. (2016). A reference panel of 64,976 haplotypes for genotype imputation. Nat Genet 48, 1279-1283.</li>
-                <li>Bycroft, C., Freeman, C., Petkova, D., Band, G., Elliott, L.T., Sharp, K., Motyer, A., Vukcevic, D., Delaneau, O., O'Connell, J., et al. (2017). Genome-wide genetic data on ~500,000 UK Biobank participants. bioRxiv.</li>
-                <li>Carroll, R.J., Bastarache, L., and Denny, J.C. (2014). R PheWAS: data analysis and plotting tools for phenome-wide association studies in the R environment. Bioinformatics 30, 2375-2376.</li>
-                <li>Ho, D.E., Imai, K., King, G., and Stuart, E.A. (2011). MatchIt: Nonparametric Preprocessing for Parametric Causal Inference. J Stat Softw 42, 1-28.</li>
-                <li>Zhou, W., Nielsen, J.B., Fritsche, L.G., Dey, R., Gabrielsen, M.E., Wolford, B.N., LeFaive, J., VandeHaar, P., Gagliano, S.A., Gifford, A., et al. (2018). Efficiently controlling for case-control imbalance and sample relatedness in large-scale genetic association studies. Nat Genet 50, 1335-1341.</li>
-                <li> Michailidou, K., Lindstrom, S., Dennis, J., Beesley, J., Hui, S., Kar, S., Lemacon, A., Soucy, P., Glubb, D., Rostamianfar, A., et al. (2017). Association analysis identifies 65 new breast cancer risk loci. Nature 551, 92-94.</li>
-                <li>MacArthur, J., Bowler, E., Cerezo, M., Gil, L., Hall, P., Hastings, E., Junkins, H., McMahon, A., Milano, A., Morales, J., et al. (2017). The new NHGRI-EBI Catalog of published genome-wide association studies (GWAS Catalog). Nucleic Acids Res 45, D896-D901.</li>
-                <li>Welter, D., MacArthur, J., Morales, J., Burdett, T., Hall, P., Junkins, H., Klemm, A., Flicek, P., Manolio, T., Hindorff, L., et al. (2014). The NHGRI GWAS Catalog, a curated resource of SNP-trait associations. Nucleic Acids Res 42, D1001-1006.</li>
-                <li> Winkler, T.W., Day, F.R., Croteau-Chonka, D.C., Wood, A.R., Locke, A.E., Magi, R., Ferreira, T., Fall, T., Graff, M., Justice, A.E., et al. (2014). Quality control and conduct of genome-wide association meta-analyses. Nat Protoc 9, 1192-1212.</li>
-                <li> Schumacher, F.R., Al Olama, A.A., Berndt, S.I., Benlloch, S., Ahmed, M., Saunders, E.J., Dadaev, T., Leongamornlert, D., Anokian, E., Cieza-Borrella, C., et al. (2018). Association analyses of more than 140,000 men identify 63 new prostate cancer susceptibility loci. Nat Genet 50, 928-936.</li>
-                <li>Phelan, C.M., Kuchenbaecker, K.B., Tyrer, J.P., Kar, S.P., Lawrenson, K., Winham, S.J., Dennis, J., Pirie, A., Riggan, M.J., Chornokur, G., et al. (2017). Identification of 12 new susceptibility loci for different histotypes of epithelial ovarian cancer. Nat Genet 49, 680-691.</li>
-                <li> Buniello, A., MacArthur, J.A.L., Cerezo, M., Harris, L.W., Hayhurst, J., Malangone, C., McMahon, A., Morales, J., Mountjoy, E., Sollis, E., et al. (2019). The NHGRI-EBI GWAS Catalog of published genome-wide association studies, targeted arrays and summary statistics 2019. Nucleic Acids Res 47, D1005-D1012.</li>
-                <li>Ransohoff, K.J., Wu, W., Cho, H.G., Chahal, H.C., Lin, Y., Dai, H.J., Amos, C.I., Lee, J.E., Tang, J.Y., Hinds, D.A., et al. (2017). Two-stage genome-wide association study identifies a novel susceptibility locus associated with melanoma. Oncotarget 8, 17586-17592.</li>
-                <li>Huyghe, J.R., Bien, S.A., Harrison, T.A., Kang, H.M., Chen, S., Schmit, S.L., Conti, D.V., Qu, C., Jeon, J., Edlund, C.K., et al. (2019). Discovery of common and rare genetic risk variants for colorectal cancer. Nat Genet 51, 76-87.</li>
-                <li>Chahal, H.S., Wu, W., Ransohoff, K.J., Yang, L., Hedlin, H., Desai, M., Lin, Y., Dai, H.J., Qureshi, A.A., Li, W.Q., et al. (2016). Genome-wide association study identifies 14 novel risk alleles associated with basal cell carcinoma. Nat Commun 7, 12510.</li>
-                <li> Chahal, H.S., Lin, Y., Ransohoff, K.J., Hinds, D.A., Wu, W., Dai, H.J., Qureshi, A.A., Li, W.Q., Kraft, P., Tang, J.Y., et al. (2016). Genome-wide association study identifies novel susceptibility loci for cutaneous squamous cell carcinoma. Nat Commun 7, 12048.</li>
-                <li> Zhou, W., Nielsen, J.B., Fritsche, L.G., Dey, R., Gabrielsen, M.E., Wolford, B.N., LeFaive, J., VandeHaar, P., Gagliano, S.A., Gifford, A., et al. (2018). Efficiently controlling for case-control imbalance and sample relatedness in large-scale genetic association studies. Nat Genet 50, 1335-1341.</li>
-                <li> Mak, T.S.H., Porsch, R.M., Choi, S.W., Zhou, X., and Sham, P.C. (2017). Polygenic scores via penalized regression on summary statistics. Genet Epidemiol 41, 469-480.</li>
-                <li> Ge, T., Chen, C.Y., Ni, Y., Feng, Y.A., and Smoller, J.W. (2019). Polygenic prediction via Bayesian regression and continuous shrinkage priors. Nat Commun 10, 1776.</li>
-                <li> Mangiafico, S. (2019). rcompanion: Functions to Support Extension Education Program Evaluation. https://CRAN.R-project.org/package=rcompanion.</li>
-                <li> Signorell, A. (2018). DescTools: Tools for Descriptive Statistics. https://cran.r-project.org/package=DescTools.</li>
-                <li>Janes, H., and Pepe, M.S. (2009). Adjusting for covariate effects on classification accuracy using the covariate-adjusted receiver operating characteristic curve. Biometrika 96, 371-382.</li>
-                <li> Rodriguez-Alvarez, M.X., and Inacio, V. (2020). ROCnReg: ROC Curve Inference with and without Covariates. https://CRAN.R-project.org/package=ROCnReg.</li>
-                <li> Kosmidis, I., Clovis Kenne Pagui, E., and Sartori, N. (2018). Mean and median bias reduction in generalized linear models. https://ui.adsabs.harvard.edu/abs/2018arXiv180404085K.</li>
-                <li> Kosmidis, I. (2019). brglm2: Bias Reduction in Generalized Linear Models. https://CRAN.R-project.org/package=brglm2.</li>
-                <li> Heinze, G. (2006). A comparative investigation of methods for logistic regression with separated or nearly separated data. Stat Med 25, 4216-4226.</li>
-                <li> Heinze, G., Ploner, M., Dunkler, D., and Southworth, H. (2013). logistf: Firth's bias reduced logistic regression. https://CRAN.R-project.org/package=logistf.</li>
-                <li> Choi, L., and Beck, C. (2017). EHR: Electronic Health Record (EHR) Data Processing and Analysis Tool. https://CRAN.R-project.org/package=EHR.</li>
-                <li> Fritsche, L.G., Gruber, S.B., Wu, Z., Schmidt, E.M., Zawistowski, M., Moser, S.E., Blanc, V.M., Brummett, C.M., Kheterpal, S., Abecasis, G.R., et al. (2018). Association of Polygenic Risk Scores for Multiple Cancers in a Phenome-wide Study: Results from The Michigan Genomics Initiative. Am J Hum Genet 102, 1048-1061.</li>
-                <li> R Core Team. (2016). R: A Language and Environment for Statistical Computing. (R Foundation for Statistical Computing, Vienna, Austria), https://www.R-project.org/.</li>
-            </ol>
-
-            
