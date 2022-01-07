@@ -1,7 +1,7 @@
-<p>Integrating published and freely available genome-wide association studies (GWAS) summary statistics from multiple sources (published GWAS, the NHGRI-EBI GWAS Catalog, FinnGen- or UKB-based GWAS), we created an online repository for exposure polygenic risk scores (ExPRS) for health-related exposure traits. Our framework condenses these summary statistics into ExPRS using linkage disequilibrium pruning and p-value thresholding (P&T) or penalized, genome-wide effect size weighting. 
-</br>
-We evaluate them in the cohort of the Michigan Genomics Initiative (MGI), a longitudinal biorepository effort at Michigan Medicine, and in the population-based UK Biobank Study (UKB).</p>
+Integrating published and freely available genome-wide association studies (GWAS) summary statistics from multiple sources (published GWAS, the NHGRI-EBI GWAS Catalog, FinnGen- or UKB-based GWAS), we created an online repository for exposure polygenic risk scores (ExPRS) for health-related exposure traits. Our framework condenses these summary statistics into ExPRS using linkage disequilibrium pruning and p-value thresholding (P&T) or penalized, genome-wide effect size weighting. 
 
-<p>For each ExPRS construct, measures on performance, accuracy, and discrimination are provided. Beyond the cancer ExPRS evaluation in MGI and UKB, the ExPRSweb platform features construct downloads, evaluation in the top percentiles, and phenome-wide ExPRS association studies (ExPRS-PheWAS) for a subset of ExPRS that are predictive for the corresponding exposure.</p>
+We evaluate them in the cohort of the Michigan Genomics Initiative (MGI), a longitudinal biorepository effort at Michigan Medicine, and in the population-based UK Biobank Study (UKB).
 
-<p>For more information, see our medRxiv preprint (will appear on medRxiv <a href="https://www.biorxiv.org" target="_blank"> soon  </a>) and the "Method" tab on top of this page.</p>
+For each ExPRS construct, measures on performance, accuracy, and discrimination are provided. Beyond the cancer ExPRS evaluation in MGI and UKB, the ExPRSweb platform features construct downloads, evaluation in the top percentiles, and phenome-wide ExPRS association studies (ExPRS-PheWAS) for a subset of ExPRS that are predictive for the corresponding exposure.
+
+For more information, see our medRxiv preprint (will appear on medRxiv <a href="https://www.biorxiv.org" target="_blank"> soon  </a>) and the "Method" tab on top of this page.
