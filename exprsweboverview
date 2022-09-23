@@ -2,6 +2,6 @@ Integrating published and freely available genome-wide association studies (GWAS
 
 We evaluate them in the cohort of the Michigan Genomics Initiative (MGI), a longitudinal biorepository effort at Michigan Medicine, and in the population-based UK Biobank Study (UKB).
 
-For each ExPRS construct, measures on performance, accuracy, and discrimination are provided. Beyond the cancer ExPRS evaluation in MGI and UKB, the ExPRSweb platform features construct downloads, evaluation in the top percentiles, and phenome-wide ExPRS association studies (ExPRS-PheWAS) for a subset of ExPRS that are predictive for the corresponding exposure.
+For each ExPRS construct, measures on performance, accuracy, and discrimination are provided. Beyond the ExPRS evaluation in MGI and UKB, the ExPRSweb platform features construct downloads, evaluation in the top percentiles, and phenome-wide ExPRS association studies (ExPRS-PheWAS) for a subset of ExPRS that are predictive for the corresponding exposure.
 
-For more information, see our medRxiv preprint https://www.medrxiv.org/content/10.1101/2022.01.13.22269176v1 and the "Method" tab on top of this page.
+For more information, see our paper in the American Journal of Human Genetics: https://authors.elsevier.com/a/1foccgeX2X9H and the "Method" tab on top of this page.
